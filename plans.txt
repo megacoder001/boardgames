@@ -1,0 +1,4 @@
+1) JS: show cross / circle by click
+2) Delete hyperlinks
+3) to publish code like github's site (make later)
+4) Make bot / AI (LATER)
