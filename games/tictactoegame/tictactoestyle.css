@@ -1,0 +1,38 @@
+body {
+    background-color: black;
+    color: white;
+}
+#tictactoeimagebackground {
+    width: 100%; /* Adjusts the image to the full width of its container */
+    height: 100%; /* Maintains the aspect ratio */
+    /* text-align: center; /* Centers the image within the div */
+    /* display: inline-block; /* Allows centering */
+}
+
+#tictactoescore {
+    text-align: right;
+}
+
+.tictactoetopic {
+    text-align: center
+}
+
+footer {
+    text-align: right;
+}
+
+/* pasted code from AI */
+  .container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .image01 {
+    display: block;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none; /* Hidden by default */
+  }

@@ -1,0 +1,7 @@
+#image {
+    width: 100%; /* Adjusts the image to the full width of its container */
+    height: 100% /* Maintains the aspect ratio */
+    /*text-align: center; /* Centers the image within the div */
+    /*display: inline-block; /* Allows centering */
+}
+

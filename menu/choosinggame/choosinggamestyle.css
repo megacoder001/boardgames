@@ -1,0 +1,22 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+footer {
+    text-align: right;
+    color: white;
+}
+
+#tictactoeicon {
+    weight: 50%;
+}
+
+.choosingmenutopic {
+    text-align: left;
+}
+
+.iconimage {
+    width: 10%;
+    height: auto;
+}
