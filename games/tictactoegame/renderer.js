@@ -6,7 +6,9 @@ export class Renderer {
 		// boardState must be TicTacToeState
 		this.boardState = boardState;
 	}
+
 	render() {
+
 		for (let ind = 0; ind < this.boardState.cellStates.length; ind++) {
 			const value = this.boardState.cellStates[ind];
 			if (value == CellState.EMPTY) {
@@ -15,10 +17,6 @@ export class Renderer {
 
 			else if (value == CellState.CROSS) {
 				console.log('x');
-				overlayImage.onload = () => {
-					ctx.drawImage(overlayImage, 50, 50, 200, 200); // Position and size of overlay
-				}
-
 			}
 
 			else if (value == CellState.CIRCLE) {
