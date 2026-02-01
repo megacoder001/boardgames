@@ -1,5 +1,5 @@
-import TicTacToeState from './state.js';
-import Renderer from './renderer.js';
+import {TicTacToeState} from './state.js';
+import {Renderer} from './renderer.js';
 
 let boardState = TicTacToeState();
 

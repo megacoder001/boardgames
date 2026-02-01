@@ -1,7 +1,6 @@
-import TicTacToeState from './state.js';
-import CellState from './state.js';
+import {TicTacToeState, CellState} from './state.js';
 
-export default class Renderer {
+export class Renderer {
 	constructor(boardState) {
 		// boardState must be TicTacToeState
 		this.boardState = boardState;

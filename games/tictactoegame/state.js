@@ -1,9 +1,8 @@
-const CellState = {
+export const CellState = {
 	EMPTY: 0,
 	CROSS: 1,
 	CIRCLE: 2
 };
-export default CellState;
 
 
 const TurnState = {
@@ -11,7 +10,7 @@ const TurnState = {
 	CIRCLE: 2,
 };
 
-export default class TicTacToeState {
+export class TicTacToeState {
 	const cellStates = Array(9).fill(CellState.EMPTY);
 	let turnState = TurnState.CROSS;
 };
