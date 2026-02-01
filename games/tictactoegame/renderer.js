@@ -5,7 +5,7 @@ export class Renderer {
 		// boardState must be TicTacToeState
 		this.boardState = boardState;
 	}
-	function render() {
+	render() {
 		for (let ind = 0; ind < this.boardState.cellStates.length; ind++) {
 			const value = this.boardState.cellStates[ind];
 			if (value == CellState.EMPTY) {
