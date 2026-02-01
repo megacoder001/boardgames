@@ -1,4 +1,4 @@
-const CellState {
+const CellState = {
 	EMPTY: 0,
 	CROSS: 1,
 	CIRCLE: 2
@@ -6,7 +6,7 @@ const CellState {
 export default CellState;
 
 
-const TurnState {
+const TurnState = {
 	CROSS: 1,
 	CIRCLE: 2,
 };
