@@ -1,5 +1,4 @@
 import {TicTacToeState, CellState} from './state.js';
-import {overlayImage.src} from './imageprovider.js';
 
 export class Renderer {
 	constructor(boardState) {
