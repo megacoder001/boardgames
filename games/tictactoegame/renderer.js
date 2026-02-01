@@ -15,9 +15,9 @@ export class Renderer {
 
 			else if (value == CellState.CROSS) {
 				console.log('x');
-			overlayImage.onload = () => {
-				ctx.drawImage(overlayImage, 50, 50, 200, 200); // Position and size of overlay
-			};
+				overlayImage.onload = () => {
+					ctx.drawImage(overlayImage, 50, 50, 200, 200); // Position and size of overlay
+				}
 
 			}
 
