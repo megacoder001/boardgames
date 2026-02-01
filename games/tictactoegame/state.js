@@ -1,8 +1,10 @@
-export default const CellState {
+const CellState {
 	EMPTY: 0,
 	CROSS: 1,
 	CIRCLE: 2
 };
+export default CellState;
+
 
 const TurnState {
 	CROSS: 1,

@@ -3,10 +3,11 @@ In progress:
 1) JS: show cross / circle by click
 
 Later:
-3) to publish the project like github's site (make later)
 4) Make bot / AI (LATER)
 5) Translate the site (in the end)
 
 Complited:
 
 2) Delete hyperlinks
+3) to publish the project like github's site (make later)
+
