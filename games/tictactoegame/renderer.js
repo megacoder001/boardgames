@@ -9,7 +9,7 @@ export class Renderer {
 		for (let ind = 0; ind < this.boardState.cellStates.length; ind++) {
 			const value = this.boardState.cellStates[ind];
 			if (value == CellState.EMPTY) {
-				console.log(' ');
+				console.log('empty');
 			}
 
 			else if (value == CellState.CROSS) {
