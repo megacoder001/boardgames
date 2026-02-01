@@ -1,6 +1,6 @@
 import {TicTacToeState} from './state.js';
 import {Renderer} from './renderer.js';
 
-let boardState = TicTacToeState();
+let boardState = new TicTacToeState();
 
-let boardRenderer = Renderer(boardState);
+let boardRenderer = new Renderer(boardState);
