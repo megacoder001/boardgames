@@ -1,4 +1,5 @@
 import {TicTacToeState, CellState} from './state.js';
+import {img} from './imageprovider.js';
 
 export class Renderer {
 	constructor(boardState) {
@@ -16,6 +17,10 @@ export class Renderer {
 
 			else if (value == CellState.CROSS) {
 				console.log('x');
+				img.addEventListener('load', () => {
+					ctx.drawImage(img, 0, 0); // Draw the image at coordinates (0, 0)
+				});
+
 			}
 
 			else if (value == CellState.CIRCLE) {

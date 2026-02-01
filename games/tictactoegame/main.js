@@ -9,5 +9,4 @@ let boardRenderer = new Renderer(boardState);
 boardState.cellStates[2] = CellState.CROSS;
 boardState.cellStates[5] = CellState.CIRCLE;
 boardState.cellStates[7] = CellState.CROSS;
-// boardState.cellStates[0:8] = CellState.CROSS;
 boardRenderer.render();
