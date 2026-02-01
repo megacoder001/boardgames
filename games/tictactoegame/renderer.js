@@ -20,7 +20,7 @@ export class Renderer {
 
 			else if (value == CellState.CIRCLE) {
 				console.log('o');
-                      	}
-               	}
-        }
+			}
+		}
+	}
 };
