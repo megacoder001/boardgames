@@ -7,7 +7,7 @@ export const CellState = {
 
 const TurnState = {
 	CROSS: 1,
-	CIRCLE: 2,
+	CIRCLE: 2
 };
 
 export class TicTacToeState {
