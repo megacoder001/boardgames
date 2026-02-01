@@ -9,7 +9,7 @@ const TurnState {
 	CIRCLE: 2,
 };
 
-class TicTacToeState {
+export default class TicTacToeState {
 	const cellStates = Array(9).fill(CellState.EMPTY);
 	let turnState = TurnState.CROSS;
 };
