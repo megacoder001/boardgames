@@ -8,6 +8,6 @@ let boardRenderer = new Renderer(boardState);
 // boardRenderer.render();
 boardState.cellStates[2] = CellState.CROSS;
 boardState.cellStates[5] = CellState.CIRCLE;
-boardState.cellStates[8] = CellState.CROSS;
+boardState.cellStates[7] = CellState.CROSS;
 // boardState.cellStates[0:8] = CellState.CROSS;
 boardRenderer.render();
