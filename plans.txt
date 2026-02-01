@@ -1,6 +1,9 @@
 In progress:
 
 1) JS: show cross / circle by click
+1.1) main.js: to draw the cross on top of board
+1.2) to paint cross & circle to the tic-tac-toe board
+
 
 Later:
 4) Make bot / AI (LATER)
@@ -10,4 +13,3 @@ Complited:
 
 2) Delete hyperlinks
 3) to publish the project like github's site (make later)
-

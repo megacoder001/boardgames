@@ -1,4 +1,5 @@
 import {TicTacToeState, CellState} from './state.js';
+import {overlayImage.src} from './imageprovider.js';
 
 export class Renderer {
 	constructor(boardState) {
@@ -14,11 +15,15 @@ export class Renderer {
 
 			else if (value == CellState.CROSS) {
 				console.log('x');
+			overlayImage.onload = () => {
+				ctx.drawImage(overlayImage, 50, 50, 200, 200); // Position and size of overlay
+			};
+
 			}
 
 			else if (value == CellState.CIRCLE) {
 				console.log('o');
-			}
-		}
-	}
+                      	}
+               	}
+        }
 };
