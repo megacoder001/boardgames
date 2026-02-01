@@ -11,8 +11,8 @@ const TurnState = {
 };
 
 export class TicTacToeState {
-	const cellStates = Array(9).fill(CellState.EMPTY);
-	let turnState = TurnState.CROSS;
+	cellStates = Array(9).fill(CellState.EMPTY);
+	turnState = TurnState.CROSS;
 };
 
 
