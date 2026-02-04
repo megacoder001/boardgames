@@ -26,7 +26,8 @@ export class Renderer {
 				//	ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // Draw background image
 				let backgroundImage = document.createElement('img');
 				backgroundImage.src = '../../images/gamesimages/tictactoeimages/tictactoefield.jpg';
-				document.body.appendChild(backgroundImage);
+//				document.body.appendChild(backgroundImage);
+				document.querySelector('.image-container').appendChild(img);
 
 			}
 
