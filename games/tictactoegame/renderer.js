@@ -17,6 +17,10 @@ export class Renderer {
 
 			else if (value == CellState.CROSS) {
 				console.log('x');
+				document.getElementById('myCanvas');
+				ctx = canvas.getContext('2d');
+				img = new Image();
+				img.src = '../../../images/redcross01.png';
 				img.addEventListener('load', () => {
 					ctx.drawImage(img, 0, 0); // Draw the image at coordinates (0, 0)
 				});
