@@ -22,7 +22,7 @@ export class Renderer {
 
 			else if (value == CellState.CROSS) {
 				console.log('x');
-				img.addEventListener('load', () => {
+				img.addEventListener('load', ('../../images\gamesimages\tictactoeimages\tictactoeprocessingimages/redcross01.png'') => {
 					ctx.drawImage(img, 0, 0); // Draw the image at coordinates (0, 0)
 				});
 
