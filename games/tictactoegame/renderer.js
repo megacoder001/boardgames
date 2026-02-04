@@ -1,5 +1,5 @@
 import {TicTacToeState, CellState} from './state.js';
-import {img} from './imageprovider.js';
+// import {img} from './imageprovider.js';
 
 export class Renderer {
 	constructor(boardState) {

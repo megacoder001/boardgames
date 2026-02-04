@@ -1,4 +1,4 @@
-const canvas = document.getElementById('myCanvas');
+/* const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 const img = new Image();
 
@@ -7,3 +7,4 @@ const img = new Image();
 // });
 
 export img.src = '../../../images/redcross01.png';
+*/
