@@ -3,7 +3,7 @@ import {TicTacToeState, CellState} from './state.js';
 
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
-const img = new Image();
+const img = 'images\gamesimages\tictactoeimages\tictactoeprocessingimages/redcross01.png';
 // doesn't work: img.src = '../../images\gamesimages\tictactoeimages\tictactoeprocessingimages/redcross01.png';
 
 export class Renderer {
@@ -22,7 +22,7 @@ export class Renderer {
 
 			else if (value == CellState.CROSS) {
 				console.log('x');
-				img.addEventListener('load', ('../../images\gamesimages\tictactoeimages\tictactoeprocessingimages/redcross01.png'') => {
+				img.addEventListener('load', ('../../images\gamesimages\tictactoeimages\tictactoeprocessingimages/redcross01.png') => {
 					ctx.drawImage(img, 0, 0); // Draw the image at coordinates (0, 0)
 				});
 
