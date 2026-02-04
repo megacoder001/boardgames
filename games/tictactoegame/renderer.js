@@ -3,7 +3,8 @@ import {TicTacToeState, CellState} from './state.js';
 
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
-const img = 'images\gamesimages\tictactoeimages\tictactoeprocessingimages/redcross01.png';
+const img = new Image();
+// const img = 'images\gamesimages\tictactoeimages\tictactoeprocessingimages/redcross01.png';
 // doesn't work: img.src = '../../images\gamesimages\tictactoeimages\tictactoeprocessingimages/redcross01.png';
 
 export class Renderer {
