@@ -17,7 +17,7 @@ export class Renderer {
 
 			else if (value == CellState.CROSS) {
 				console.log('x');
-				document.getElementById('myCanvas');
+				canvas = document.getElementById('myCanvas');
 				ctx = canvas.getContext('2d');
 				img = new Image();
 				img.src = '../../../images/redcross01.png';
