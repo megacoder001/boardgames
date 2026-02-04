@@ -36,3 +36,15 @@ footer {
     left: 0;
     display: none; /* Hidden by default */
   }
+
+.canvas-container {
+    width: 100%; /* Or some other defined width */
+    height: 100%; /* Example: full viewport height */
+}
+
+#myCanvas {
+    width: 90%;
+    height: 90%;
+    border: 1px solid black; /* Optional: for visibility */
+}
+

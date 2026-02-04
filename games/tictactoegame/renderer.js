@@ -6,6 +6,7 @@ import {TicTacToeState, CellState} from './state.js';
 
 // const overlayImage doesn't work: img.src = '../../images\gamesimages\tictactoeimages\tictactoeprocessingimages/redcross01.png';
 
+
 export class Renderer {
 	constructor(boardState) {
 		// boardState must be TicTacToeState
@@ -13,6 +14,15 @@ export class Renderer {
 	}
 
 	render() {
+
+		const img2 = new Image();
+
+		img2.addEventListener('load', () => {
+			ctx.drawImage(img2, 100, 100, 100, 300); // Draw the image at coordinates (0, 0)
+		});
+
+		img2.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/redcross01.png';
+
 
 		for (let ind = 0; ind < this.boardState.cellStates.length; ind++) {
 			const value = this.boardState.cellStates[ind];
