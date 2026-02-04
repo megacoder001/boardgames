@@ -24,10 +24,10 @@ export class Renderer {
 				console.log('x');
 				// backgroundimg.onload = () => {
 				//	ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // Draw background image
-				let backgroundImage = document.createElement('img');
-				backgroundImage.src = '../../images/gamesimages/tictactoeimages/tictactoefield.jpg';
+//				let backgroundImage = document.createElement('img');
+//				backgroundImage.src = '../../images/gamesimages/tictactoeimages/tictactoefield.jpg';
 //				document.body.appendChild(backgroundImage);
-				document.querySelector('.image-container').appendChild(img);
+//				document.querySelector('.jpg').appendChild(img);
 
 			}
 
