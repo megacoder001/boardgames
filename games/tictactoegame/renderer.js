@@ -28,8 +28,6 @@ export class Renderer {
 				backgroundImage.src = '../../images/gamesimages/tictactoeimages/tictactoefield.jpg';
 				document.body.appendChild(backgroundImage);
 
-				};
-
 			}
 
 			else if (value == CellState.CIRCLE) {
