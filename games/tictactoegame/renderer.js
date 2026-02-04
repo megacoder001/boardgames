@@ -4,7 +4,7 @@ import {TicTacToeState, CellState} from './state.js';
 canvas = document.getElementById('myCanvas');
 ctx = canvas.getContext('2d');
 img = new Image();
-img.src = '../../../images/redcross01.png';
+img.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessing/redcross01.png';
 
 export class Renderer {
 	constructor(boardState) {
