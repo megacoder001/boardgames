@@ -11,21 +11,21 @@ boardState.cellStates[7] = CellState.CROSS;
 // boardRenderer.render();
 
 const canvas = document.getElementById('boardCanvas');
-const ctx = canvas.getContext('2d');
-const img = new Image();
+const canvasContext2d = canvas.getContext('2d');
+const boardImage = new Image();
 
-img.addEventListener('load', () => {
-	ctx.drawImage(img, 0, 0, 1000, 600); // Draw the image at coordinates (0, 0)
-	boardRenderer.render(ctx)
+boardImage.addEventListener('load', () => {
+	canvasContext2d.drawImage(boardImage, 0, 0, 1000, 600); // Draw the image at coordinates (0, 0)
+	boardRenderer.render(canvasContext2d)
 });
 
-img.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/tictactoefield.jpg';
+boardImage.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/tictactoefield.jpg';
 
 
 /* const img2 = new Image();
 
 img2.addEventListener('load', () => {
-    ctx.drawImage(img2, 100, 100, 100, 300); // Draw the image at coordinates (0, 0)
+    canvasContext2d.drawImage(img2, 100, 100, 100, 300); // Draw the image at coordinates (0, 0)
 });
 
 img2.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/redcross01.png';

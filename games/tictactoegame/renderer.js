@@ -13,15 +13,15 @@ export class Renderer {
 		this.boardState = boardState;
 	}
 
-	render(ctx) {
+	render(canvasContext2d) {
 
-		const img2 = new Image();
+		const crossImage = new Image();
 
-		img2.addEventListener('load', () => {
-			ctx.drawImage(img2, 100, 100, 100, 300); // Draw the image at coordinates (0, 0)
+		crossImage.addEventListener('load', () => {
+			canvasContext2d.drawImage(crossImage, 100, 100, 100, 300); // Draw the image at coordinates (0, 0)
 		});
 
-		img2.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/redcross01.png';
+		crossImage.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/redcross01.png';
 
 
 		for (let ind = 0; ind < this.boardState.cellStates.length; ind++) {
@@ -33,7 +33,7 @@ export class Renderer {
 			else if (value == CellState.CROSS) {
 				console.log('x');
 				// backgroundimg.onload = () => {
-				//	ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // Draw background image
+				//	canvasContext2d.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // Draw background image
 //				let backgroundImage = document.createElement('img');
 //				backgroundImage.src = '../../images/gamesimages/tictactoeimages/tictactoefield.jpg';
 //				document.body.appendChild(backgroundImage);
