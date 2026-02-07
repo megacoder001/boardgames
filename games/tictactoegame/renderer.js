@@ -13,7 +13,7 @@ export class Renderer {
 		this.boardState = boardState;
 	}
 
-	render() {
+	render(ctx) {
 
 		const img2 = new Image();
 

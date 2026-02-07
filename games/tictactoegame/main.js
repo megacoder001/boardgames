@@ -16,7 +16,7 @@ const img = new Image();
 
 img.addEventListener('load', () => {
 	ctx.drawImage(img, 0, 0, 1000, 600); // Draw the image at coordinates (0, 0)
-	boardRenderer.render()
+	boardRenderer.render(ctx)
 });
 
 img.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/tictactoefield.jpg';
