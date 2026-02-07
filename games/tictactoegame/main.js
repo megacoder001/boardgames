@@ -27,3 +27,4 @@ const [background, cross, circle] = await Promise.all(
 );
 
 boardRenderer.render(canvasContext2d, background, cross, circle);
+
