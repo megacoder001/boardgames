@@ -12,32 +12,32 @@ export class Renderer {
 //		canvasContext2d.drawImage(cross, 100, 0, 150, 150);
 //		canvasContext2d.drawImage(circle, 300, 0, 150, 150);
 
-		let indcountx = 0 // important for x coordinates
-		let indcounty = 0 // important for y coordinates
-		let coordinatex = 0 // default coordinate x
-		let coordinatey = 3 // default coordinate
+		let indCountX = 0 // important for x coordinates
+		let indCountY = 0 // important for y coordinates
+		let coordinateX = 0 // default coordinate x
+		let coordinateY = 3 // default coordinate
+
 		for (let ind = 0; ind < this.boardState.cellStates.length; ind++) {
 			const value = this.boardState.cellStates[ind];
 
-			coordinatex = 65 * (indcountx + 1) // write it in the end
+			coordinateX = 65 * (indCountX + 1) // write it in the end
 
-			if (indcountx == 3) {
-				coordinatex = 65;
-				indcountx = 0;
+			if (indCountX == 3) {
+				coordinateX = 65;
+				indCountX = 0;
 			}
 
-			if (indcounty == 3) {
-				coordinatey = 50;
+			if (indCountY == 3) {
+				coordinateY = 50;
 			}
 
-			else if (indcounty == 6) {
-				coordinatey = 95;
+			else if (indCountY == 6) {
+				coordinateY = 95;
 			}
 
 
-			indcountx += 1 // write in the end after coordinatex
-			indcounty += 1 // write in the end with indcountx
-
+			indCountX += 1 // write in the end after coordinatex
+			indCountY += 1 // write in the end with indcountx
 
 
 
@@ -47,11 +47,12 @@ export class Renderer {
 
 			else if (value == CellState.CROSS) {
 				console.log('x');
-				canvasContext2d.drawImage(cross, coordinatex, coordinatey, 45, 45);
+				canvasContext2d.drawImage(cross, coordinateX, coordinateY, 45, 45);
 			}
 
 			else if (value == CellState.CIRCLE) {
 				console.log('o');
+				canvasContext2d.drawImage(circle, coordinateX, coordinateY, 45, 45);
 			}
 		}
 	}
