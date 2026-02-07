@@ -1,5 +1,4 @@
 import {TicTacToeState, CellState} from './state.js';
-// import {img} from './imageprovider.js';
 
 export class Renderer {
 	constructor(boardState) {
@@ -9,8 +8,6 @@ export class Renderer {
 
 	render(canvasContext2d, background, cross, circle) {
 		canvasContext2d.drawImage(background, 0, 0, 300, 150);
-//		canvasContext2d.drawImage(cross, 100, 0, 150, 150);
-//		canvasContext2d.drawImage(circle, 300, 0, 150, 150);
 
 		let indCountX = 0 // important for x coordinates
 		let indCountY = 0 // important for y coordinates
