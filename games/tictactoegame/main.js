@@ -1,32 +1,29 @@
 import {TicTacToeState, CellState} from './state.js';
 import {Renderer} from './renderer.js';
+import {loadImage} from './imageloader.js';
 
 let boardState = new TicTacToeState();
-
 let boardRenderer = new Renderer(boardState);
 
 boardState.cellStates[2] = CellState.CROSS;
 boardState.cellStates[5] = CellState.CIRCLE;
 boardState.cellStates[7] = CellState.CROSS;
-// boardRenderer.render();
 
 const canvas = document.getElementById('boardCanvas');
 const canvasContext2d = canvas.getContext('2d');
-const boardImage = new Image();
-
-boardImage.addEventListener('load', () => {
-	canvasContext2d.drawImage(boardImage, 0, 0, 1000, 600); // Draw the image at coordinates (0, 0)
-	boardRenderer.render(canvasContext2d)
-});
-
-boardImage.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/tictactoefield.jpg';
 
 
-/* const img2 = new Image();
+// Define image sources in the order you want them drawn (background first)
 
-img2.addEventListener('load', () => {
-    canvasContext2d.drawImage(img2, 100, 100, 100, 300); // Draw the image at coordinates (0, 0)
-});
+const imageUrls = [
+	'../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/tictactoefield.jpg', // Background
+	'../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/redcross01.png',     // Cross
+	'../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/circleblue.png'  // Circle
+];
 
-img2.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/redcross01.png';
-*/
+// Load all images (they load in parallel but we wait for all)
+const [background, cross, circle] = await Promise.all(
+	imageUrls.map(loadImage)
+);
+
+boardRenderer.render(canvasContext2d, background, cross, circle);

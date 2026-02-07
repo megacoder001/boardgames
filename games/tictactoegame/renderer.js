@@ -13,16 +13,10 @@ export class Renderer {
 		this.boardState = boardState;
 	}
 
-	render(canvasContext2d) {
-
-		const crossImage = new Image();
-
-		crossImage.addEventListener('load', () => {
-			canvasContext2d.drawImage(crossImage, 100, 100, 100, 300); // Draw the image at coordinates (0, 0)
-		});
-
-		crossImage.src = '../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/redcross01.png';
-
+	render(canvasContext2d, background, cross, circle) {
+		canvasContext2d.drawImage(background, 0, 0, 1000, 600);
+		canvasContext2d.drawImage(cross, 100, 0, 150, 150);
+		canvasContext2d.drawImage(circle, 300, 0, 150, 150);
 
 		for (let ind = 0; ind < this.boardState.cellStates.length; ind++) {
 			const value = this.boardState.cellStates[ind];

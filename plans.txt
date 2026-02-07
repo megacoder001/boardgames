@@ -4,6 +4,7 @@ In progress:
 1.1) main.js: to draw the cross on top of board
 1.2) to paint cross & circle to the tic-tac-toe board
 
+6) rename "render()" in the file "Rednerer.js" to "draw()" & rename "Renderer.js" to "Drawer.js" & the class inside.
 
 Later:
 4) Make bot / AI (LATER)
