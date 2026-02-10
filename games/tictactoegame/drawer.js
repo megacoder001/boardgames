@@ -1,12 +1,12 @@
 import {TicTacToeState, CellState} from './state.js';
 
-export class Renderer {
+export class Drawer {
 	constructor(boardState) {
 		// boardState must be TicTacToeState
 		this.boardState = boardState;
 	}
 
-	render(canvasContext2d, background, cross, circle) {
+	draw(canvasContext2d, background, cross, circle) {
 		canvasContext2d.drawImage(background, 0, 0, 300, 150);
 
 		let indCountX = 0 // important for x coordinates

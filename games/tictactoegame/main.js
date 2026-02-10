@@ -1,9 +1,9 @@
 import {TicTacToeState, CellState} from './state.js';
-import {Renderer} from './renderer.js';
+import {Drawer} from './drawer.js';
 import {loadImage} from './imageloader.js';
 
 let boardState = new TicTacToeState();
-let boardRenderer = new Renderer(boardState);
+let boardDrawer = new Drawer(boardState);
 
 boardState.cellStates[2] = CellState.CROSS;
 boardState.cellStates[5] = CellState.CIRCLE;
@@ -26,5 +26,5 @@ const [background, cross, circle] = await Promise.all(
 	imageUrls.map(loadImage)
 );
 
-boardRenderer.render(canvasContext2d, background, cross, circle);
+boardDrawer.draw(canvasContext2d, background, cross, circle);
 
