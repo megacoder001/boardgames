@@ -4,10 +4,22 @@ import {loadImage} from './imageloader.js';
 
 let boardState = new TicTacToeState();
 let boardDrawer = new Drawer(boardState);
+// let boardTurn = TurnState.CROSS;
 
+// onclick = INPUT FROM ONCLICK
 boardState.cellStates[2] = CellState.CROSS;
 boardState.cellStates[5] = CellState.CIRCLE;
 boardState.cellStates[7] = CellState.CROSS;
+
+
+if (boardState.cellStates[1] == CellState.EMPTY) {
+	boardState.cellStates[1] = CellState.CROSS;
+}
+
+else {
+	console.log('delete_this');
+}
+
 
 const canvas = document.getElementById('boardCanvas');
 const canvasContext2d = canvas.getContext('2d');
@@ -27,4 +39,3 @@ const [background, cross, circle] = await Promise.all(
 );
 
 boardDrawer.draw(canvasContext2d, background, cross, circle);
-

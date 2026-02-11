@@ -2,7 +2,7 @@ import {TicTacToeState, CellState} from './state.js';
 
 export class Drawer {
 	constructor(boardState) {
-		// boardState must be TicTacToeState
+		// boardState is TicTacToeState
 		this.boardState = boardState;
 	}
 
@@ -12,12 +12,11 @@ export class Drawer {
 		let indCountX = 0 // important for x coordinates
 		let indCountY = 0 // important for y coordinates
 		let coordinateX = 0 // default coordinate x
-		let coordinateY = 3 // default coordinate
+		let coordinateY = 3 // default coordinate y
 
 		for (let ind = 0; ind < this.boardState.cellStates.length; ind++) {
 			const value = this.boardState.cellStates[ind];
-
-			coordinateX = 65 * (indCountX + 1) // write it in the end
+			coordinateX = 65 * (indCountX + 1)
 
 			if (indCountX == 3) {
 				coordinateX = 65;
@@ -33,9 +32,8 @@ export class Drawer {
 			}
 
 
-			indCountX += 1 // write in the end after coordinatex
-			indCountY += 1 // write in the end with indcountx
-
+			indCountX += 1
+			indCountY += 1
 
 
 			if (value == CellState.EMPTY) {
