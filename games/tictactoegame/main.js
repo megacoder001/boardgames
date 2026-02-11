@@ -1,19 +1,28 @@
-import {TicTacToeState, CellState} from './state.js';
+import {TicTacToeState, CellState, TurnState} from './state.js';
 import {Drawer} from './drawer.js';
 import {loadImage} from './imageloader.js';
 
 let boardState = new TicTacToeState();
 let boardDrawer = new Drawer(boardState);
-// let boardTurn = TurnState.CROSS;
+let boardTurn = 1;
+let onclick = 3;
+let onclick = onclick2;
+// boardState.cellStates[2] = CellState.CROSS;
+// boardState.cellStates[5] = CellState.CIRCLE;
+// boardState.cellStates[7] = CellState.CROSS;
 
-// onclick = INPUT FROM ONCLICK
-boardState.cellStates[2] = CellState.CROSS;
-boardState.cellStates[5] = CellState.CIRCLE;
-boardState.cellStates[7] = CellState.CROSS;
 
+if (boardState.cellStates[onclick] == CellState.EMPTY /* or " == 0" ? */) {
+	boardState.cellStates[onclick] = CellState.CROSS;
+	if (boardTurn == 1) {
+		boardState.turnStates[onclick] = TurnState.CROSS;
+		boardTurn = 2;
+	}
 
-if (boardState.cellStates[1] == CellState.EMPTY) {
-	boardState.cellStates[1] = CellState.CROSS;
+	else {
+		boardState.turnStates[onclick] = TurnState.CIRCLE;
+		boardTurn = 1;
+	}
 }
 
 else {
