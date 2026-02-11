@@ -5,15 +5,32 @@ export const CellState = {
 };
 
 
-export const TurnState = {
+const TurnState = {
 	CROSS: 1,
 	CIRCLE: 2
 };
 
 export class TicTacToeState {
 	cellStates = Array(9).fill(CellState.EMPTY);
-	turnStates = Array(9);
 	turnState = TurnState.CROSS;
-};
 
-// function 
+	nextTurn(cellIdx) {
+		if (this.cellStates[cellIdx] == CellState.EMPTY) {
+		        this.cellStates[cellIdx] = CellState.CROSS;
+
+		        if (this.turnState == TurnState.CROSS) {
+		                this.cellStates[cellIdx] = CellState.CROSS;
+		                this.turnState = TurnState.CIRCLE;
+		        }
+
+		        else {
+		                this.cellStates[cellIdx] = CellState.CIRCLE;
+		                this.turnState = TurnState.CROSS;
+		        }
+		}
+
+		else {
+		        console.log('occupied');
+		}
+	}
+};

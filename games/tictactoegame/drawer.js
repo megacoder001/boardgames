@@ -16,6 +16,7 @@ export class Drawer {
 
 		for (let ind = 0; ind < this.boardState.cellStates.length; ind++) {
 			const value = this.boardState.cellStates[ind];
+
 			coordinateX = 65 * (indCountX + 1)
 
 			if (indCountX == 3) {
