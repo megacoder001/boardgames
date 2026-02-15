@@ -6,21 +6,17 @@ import {cellDetection} from './cellIdx.js';
 //
 let boardState = new TicTacToeState();
 
-// 
 
 // Getting coordinates
-let clickIdx = new cellDetection();
 
 //
-let coordinates = clickIdx.coordinatesDetection()
-// boardState.nextTurn(coordinates);
 
-boardState.nextTurn(coordinates);
-
+// boardState.nextTurn(clickIdx.coordinatesDetection());
+/*
 boardState.nextTurn(2);
 boardState.nextTurn(5);
 boardState.nextTurn(7);
-
+*/
 
 
 // Getting image's ID
@@ -42,5 +38,6 @@ const [background, cross, circle] = await Promise.all(
 );
 
 let boardDrawer = new Drawer(boardState, canvasContext2d, background, cross, circle);
+let clickIdx = new cellDetection(boardState, boardDrawer);
 
 boardDrawer.draw();

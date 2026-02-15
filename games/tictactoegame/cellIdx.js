@@ -1,13 +1,16 @@
-import {TicTacToeState} from './state.js';
+// import {TicTacToeState} from './state.js';
 // import {canvasContext2d, background, cross, circle} from './main.js';
 
-let boardState = new TicTacToeState();
-
 export class cellDetection {
-	cellIdx = 0;
+	constructor(boardState, boardDrawer) {
+	this.boardState = boardState;
+	this.boardDrawer = boardDrawer;
+	this.coordinatesDetection();
+	}
+
 	clickArea = document.getElementById('canvasIdxDetection');
 	coordinatesDetection() {
-		this.clickArea.addEventListener('click', function(event) {
+		this.clickArea.addEventListener('click', (event) => {
 		this.cellIdx;
 			var x = event.clientX;
 			var y = event.clientY;
@@ -17,11 +20,11 @@ export class cellDetection {
 // make brackets in if & make by percentages
 
 			if (x > 185 && x < 358 && y > 225 && y < 327) {
-				this.cellIdx = 0;
-				boardState.nextTurn(this.cellIdx);
-//				boardDrawer.draw(canvasContext2d, background, cross, circle);
+				let cellIdx = 0;
+				this.boardState.nextTurn(cellIdx);
+				this.boardDrawer.draw();
 			}
-			return this.cellIdx;
+//			return this.cellIdx;
 
 		})
 		console.log('I\'m alive!')
