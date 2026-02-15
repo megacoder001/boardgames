@@ -48,3 +48,7 @@ footer {
 /*    border: 1px solid black;  Optional: for visibility */
 }
 
+canvasIdxDetection {
+	width: 100%;
+	height: 100%;
+}

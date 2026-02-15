@@ -1,7 +1,7 @@
 import {TicTacToeState, CellState} from './state.js';
 import {Drawer} from './drawer.js';
 import {loadImage} from './imageloader.js';
-import {cellDetection} from './cellIdx.js';
+import {CellDetection} from './cellIdx.js';
 
 //
 let boardState = new TicTacToeState();
@@ -38,6 +38,6 @@ const [background, cross, circle] = await Promise.all(
 );
 
 let boardDrawer = new Drawer(boardState, canvasContext2d, background, cross, circle);
-let clickIdx = new cellDetection(boardState, boardDrawer);
+let clickIdx = new CellDetection(boardState, boardDrawer, canvas);
 
 boardDrawer.draw();
