@@ -1,13 +1,17 @@
 import {TicTacToeState, CellState} from './state.js';
 
 export class Drawer {
-	constructor(boardState) {
+	constructor(boardState, canvasContext2d, background, cross, circle) {
 		// boardState is TicTacToeState
 		this.boardState = boardState;
+		this.canvasContext2d = canvasContext2d;
+		this.background = background;
+		this.cross = cross;
+		this.circle = circle;
 	}
 
-	draw(canvasContext2d, background, cross, circle) {
-		canvasContext2d.drawImage(background, 0, 0, 300, 150);
+	draw() {
+		this.canvasContext2d.drawImage(this.background, 0, 0, 300, 150);
 
 		let indCountX = 0 // important for x coordinates
 		let indCountY = 0 // important for y coordinates
@@ -43,12 +47,12 @@ export class Drawer {
 
 			else if (value == CellState.CROSS) {
 				console.log('x');
-				canvasContext2d.drawImage(cross, coordinateX, coordinateY, 45, 45);
+				this.canvasContext2d.drawImage(this.cross, coordinateX, coordinateY, 45, 45);
 			}
 
 			else if (value == CellState.CIRCLE) {
 				console.log('o');
-				canvasContext2d.drawImage(circle, coordinateX, coordinateY, 45, 45);
+				this.canvasContext2d.drawImage(this.circle, coordinateX, coordinateY, 45, 45);
 			}
 		}
 	}

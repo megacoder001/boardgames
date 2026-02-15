@@ -15,8 +15,11 @@ export class TicTacToeState {
 	turnState = TurnState.CROSS;
 
 	nextTurn(cellIdx) {
+		console.log('cellIdx = ' + cellIdx)
+
 		if (this.cellStates[cellIdx] == CellState.EMPTY) {
 		        this.cellStates[cellIdx] = CellState.CROSS;
+			console.log('It\'s first time')
 
 		        if (this.turnState == TurnState.CROSS) {
 		                this.cellStates[cellIdx] = CellState.CROSS;
@@ -32,5 +35,6 @@ export class TicTacToeState {
 		else {
 		        console.log('occupied');
 		}
+
 	}
 };

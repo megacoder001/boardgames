@@ -7,19 +7,23 @@ import {cellDetection} from './cellIdx.js';
 let boardState = new TicTacToeState();
 
 // 
-let boardDrawer = new Drawer(boardState);
 
 // Getting coordinates
 let clickIdx = new cellDetection();
-var clickArea = document.getElementById('canvasIdxDetection');
 
 //
-boardState.nextTurn(clickIdx.cellDetectionFunction(clickArea));
+let coordinates = clickIdx.coordinatesDetection()
+// boardState.nextTurn(coordinates);
+
+boardState.nextTurn(coordinates);
+
 boardState.nextTurn(2);
 boardState.nextTurn(5);
 boardState.nextTurn(7);
 
-// Getting element's id
+
+
+// Getting image's ID
 const canvas = document.getElementById('boardCanvas');
 const canvasContext2d = canvas.getContext('2d');
 
@@ -37,4 +41,6 @@ const [background, cross, circle] = await Promise.all(
 	imageUrls.map(loadImage)
 );
 
-boardDrawer.draw(canvasContext2d, background, cross, circle);
+let boardDrawer = new Drawer(boardState, canvasContext2d, background, cross, circle);
+
+boardDrawer.draw();
