@@ -19,20 +19,53 @@ export class CellDetection {
 			const y = (event.clientY - rect.top) * scaleY;
 
 
-			console.log('X: ' + x + ', Y: ' + y);
+//			console.log('X: ' + x + ', Y: ' + y);
 			let cellIdx;
 
 // make brackets in if & make by percentages
 
-			if ((x > 185 && x < 358) && (y > 225 && y < 327)) {
+			if ((x > 58 && x < 110) && (y > 12 && y < 46)) {
 				cellIdx = 0;
 			}
+
+			else if ((x > 119 && x < 178) && (y > 12 && y < 46)) {
+				cellIdx = 1;
+			}
+
+
+			else if ((x > 184 && x < 229) && (y > 12 && y < 46)) {
+				cellIdx = 2;
+			}
+
+
+			else if ((x > 58 && x < 113) && (y > 52 && y < 89)) {
+				cellIdx = 3;
+			}
+
+			else if ((x > 119 && x < 178) && (y > 52 && y < 89)) {
+				cellIdx = 4;
+			}
+
+			else if ((x > 184 && x < 229) && (y > 52 && y < 89)) {
+				cellIdx = 5;
+			}
+
+			else if ((x > 58 && x < 113) && (y > 97 && y < 137)) {
+				cellIdx = 6;
+			}
+
+			else if ((x > 119 && x < 178) && (y > 97 && y < 137)) {
+				cellIdx = 7;
+			}
+
+			else if ((x > 184 && x < 229) && (y > 97 && y < 137)) {
+				cellIdx = 8;
+			}
+
 			this.boardState.nextTurn(cellIdx);
 			this.boardDrawer.draw();
 
 		})
-
-		console.log('I\'m alive!')
         }
 };
 
