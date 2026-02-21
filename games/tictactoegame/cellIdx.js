@@ -2,9 +2,8 @@
 // import {canvasContext2d, background, cross, circle} from './main.js';
 
 export class CellDetection {
-	constructor(boardState, boardDrawer, clickArea) {
-		this.boardState = boardState;
-		this.boardDrawer = boardDrawer;
+	constructor(clickArea, onCall) {
+		this.onCall = onCall;
 		this.clickArea = clickArea;
 
 		this.coordinatesDetection();
@@ -62,9 +61,11 @@ export class CellDetection {
 				cellIdx = 8;
 			}
 
-			this.boardState.nextTurn(cellIdx);
-			this.boardDrawer.draw();
+			this.onCall(cellIdx);
 
+/*			this.boardState.nextTurn(cellIdx);
+			this.boardDrawer.draw();
+*/
 		})
         }
 };

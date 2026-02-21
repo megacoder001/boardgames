@@ -1,10 +1,9 @@
 In progress:
 
-1) JS: show cross / circle by click
-1.1) main.js: to draw the cross on top of board
-1.2) to paint cross & circle to the tic-tac-toe board
+7) Create function drawing pop-up window.
+7.1) Call this function for checking from main.js
 
-to realize onclick function & print coordinates in the console log
+8) Cleaning every cell after ending game or before (not sure) new game start
 
 Later:
 4) Make bot / AI (LATER)
@@ -12,6 +11,12 @@ Later:
 
 Complited:
 
+1) JS: show cross / circle by click
+1.1) main.js: to draw the cross on top of board
+1.2) to paint cross & circle to the tic-tac-toe board
 2) Delete hyperlinks
 3) to publish the project like github's site (make later)
 6) rename "render()" in the file "Rednerer.js" to "draw()" & rename "Renderer.js" to "Drawer.js" & the class inside.
+
+to create onclick function & print coordinates in the console log
+

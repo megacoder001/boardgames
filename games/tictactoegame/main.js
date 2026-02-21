@@ -37,7 +37,11 @@ const [background, cross, circle] = await Promise.all(
 	imageUrls.map(loadImage)
 );
 
+
 let boardDrawer = new Drawer(boardState, canvasContext2d, background, cross, circle);
-let clickIdx = new CellDetection(boardState, boardDrawer, canvas);
+let clickIdx = new CellDetection(canvas, (cellIdx) => {
+	boardState.nextTurn(cellIdx);
+	boardDrawer.draw();
+});
 
 boardDrawer.draw();
