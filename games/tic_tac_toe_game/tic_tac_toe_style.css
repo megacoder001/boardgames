@@ -72,5 +72,7 @@ canvasIdxDetection {
 	height: 15%;
 }
 
-#gameResultClose {
+#gameResultInside {
+	color: black;
+	background: white;
 }

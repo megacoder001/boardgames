@@ -1,13 +1,11 @@
 In progress:
 
 7) Game Ending
-7.2) Cleaning every cell after ending game or before (not sure) new game start
-7.3) Print who's the winner after game and fix resultWindow
-7.4) Start new game + create button for that
+7.4) Start new game + (create button for that?)
 
 9) Continue renaming css's elements in HTMl + CSS
 
-10) Modefy visual
+10) Modify visual
 10.1) Github's actual + unactual icon (if have no Network)
 10.2) Buff Menu
 
@@ -23,8 +21,11 @@ Complited:
 2) Delete hyperlinks
 3) to publish the project like github's site (make later)
 6) rename "render()" in the file "Rednerer.js" to "draw()" & rename "Renderer.js" to "Drawer.js" & the class inside.
-7) Create function drawing pop-up window.
-7.1) Call this function for checking from main.js
+7) Game Ending
+7.1) Create function drawing pop-up window.
+7.2) Call this function for checking from main.js
+7.3) Cleaning every cell after ending game or before (not sure) new game start
+7.4) Print who's the winner after game and fix resultWindow
 
 to create onclick function & print coordinates in the console log
 

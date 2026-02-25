@@ -1,7 +1,7 @@
 import {TicTacToeState, CellState, WinnerState} from './state.js';
 
 export class Drawer {
-	constructor(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose) {
+	constructor(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose, resultWindowText) {
 		// boardState is TicTacToeState
 		this.boardState = boardState;
 		this.canvasContext2d = canvasContext2d;
@@ -9,10 +9,12 @@ export class Drawer {
 		this.cross = cross;
 		this.circle = circle;
 		this.resultWindow = resultWindow;
-		this.resultWindowClose = resultWindowClose
+		this.resultWindowClose = resultWindowClose;
+		this.resultWindowText = resultWindowText;
 	}
 
 	draw() {
+		var resultText // I've added it for recently
 		this.canvasContext2d.drawImage(this.background, 0, 0, 300, 150);
 
 		let indCountX = 0 // important for x coordinates
@@ -58,10 +60,22 @@ export class Drawer {
 			}
 		}
 
-	if (this.boardState.winner != WinnerState.NONE) {
-		this.resultWindow.style.display = 'block';
-//		document.querySelector('#gameResultInfo').innerText = "Hello World";
-//		this.resultWindowClose.onclick this.resultWindow.style.display = "none";
-	}
+		if (this.boardState.winner != WinnerState.NONE) {
+			this.resultWindow.style.display = 'block';
+
+			if (this.boardState.winner == WinnerState.CROSS) {
+				resultText = 'CROSS WON!!!';
+			}
+
+			else if (this.boardState.winner == WinnerState.CIRCLE) {
+				resultText = 'CIRCLE WON!!!';
+			}
+
+			else {
+				resultText = 'TIE! =(';
+			}
+
+			this.resultWindowText.textContent = resultText;
+		}
 	}
 };

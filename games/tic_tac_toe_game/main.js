@@ -22,7 +22,13 @@ const canvasContext2d = canvas.getContext('2d');
 const resultWindow = document.getElementById('gameResult');
 const resultWindowText = document.getElementById('gameResultInfo');
 const resultWindowClose = document.getElementById('gameResultClose');
-resultWindowClose.onclick = () => resultWindow.style.display = 'none';
+resultWindowClose.onclick = () => {
+// resultWindow.style.width = '0%';
+// resultWindow.style.height = '0%';
+resultWindow.style.display = 'none';
+boardState.cleaningCompany();
+boardDrawer.draw();
+}
 
 // Define image sources in the order you want them drawn (background first)
 
@@ -38,7 +44,7 @@ const [background, cross, circle] = await Promise.all(
 );
 
 
-let boardDrawer = new Drawer(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose);
+let boardDrawer = new Drawer(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose, resultWindowText);
 let clickIdx = new CellDetection(canvas, (cellIdx) => {
 	boardState.nextTurn(cellIdx);
 	boardDrawer.draw();

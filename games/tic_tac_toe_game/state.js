@@ -124,4 +124,10 @@ export class TicTacToeState {
 
 		console.log('WinnerState = ' + this.winner);
 	}
+
+	cleaningCompany() {
+		this.winner = WinnerState.NONE;
+		this.cellStates = Array(9).fill(CellState.EMPTY);
+		this.turnState = TurnState.CROSS;
+	}
 };
