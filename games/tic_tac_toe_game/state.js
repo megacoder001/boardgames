@@ -4,7 +4,7 @@ export const CellState = {
 	CIRCLE: 2
 };
 
-const WinnerState = {
+export const WinnerState = {
 	NONE: 0,
 	CROSS: 1,
 	CIRCLE: 2,

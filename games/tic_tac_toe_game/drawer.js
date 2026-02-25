@@ -1,13 +1,15 @@
-import {TicTacToeState, CellState} from './state.js';
+import {TicTacToeState, CellState, WinnerState} from './state.js';
 
 export class Drawer {
-	constructor(boardState, canvasContext2d, background, cross, circle) {
+	constructor(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose) {
 		// boardState is TicTacToeState
 		this.boardState = boardState;
 		this.canvasContext2d = canvasContext2d;
 		this.background = background;
 		this.cross = cross;
 		this.circle = circle;
+		this.resultWindow = resultWindow;
+		this.resultWindowClose = resultWindowClose
 	}
 
 	draw() {
@@ -55,5 +57,11 @@ export class Drawer {
 				this.canvasContext2d.drawImage(this.circle, coordinateX, coordinateY, 45, 45);
 			}
 		}
+
+	if (this.boardState.winner != WinnerState.NONE) {
+		this.resultWindow.style.display = 'block';
+
+//		this.resultWindowClose.onclick this.resultWindow.style.display = "none";
+	}
 	}
 };

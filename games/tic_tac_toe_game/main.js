@@ -12,17 +12,16 @@ let boardState = new TicTacToeState();
 //
 
 // boardState.nextTurn(clickIdx.coordinatesDetection());
-/*
-boardState.nextTurn(2);
-boardState.nextTurn(5);
-boardState.nextTurn(7);
-*/
 
 
 // Getting image's ID
 const canvas = document.getElementById('boardCanvas');
 const canvasContext2d = canvas.getContext('2d');
 
+//Getting div's ID
+const resultWindow = document.getElementById('gameResult');
+const resultWindowClose = document.getElementById('gameResultClose')
+resultWindowClose.onclick = () => resultWindow.style.display = "none";
 
 // Define image sources in the order you want them drawn (background first)
 
@@ -38,7 +37,7 @@ const [background, cross, circle] = await Promise.all(
 );
 
 
-let boardDrawer = new Drawer(boardState, canvasContext2d, background, cross, circle);
+let boardDrawer = new Drawer(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose);
 let clickIdx = new CellDetection(canvas, (cellIdx) => {
 	boardState.nextTurn(cellIdx);
 	boardDrawer.draw();
