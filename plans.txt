@@ -4,6 +4,7 @@ In progress:
 7.1) Call this function for checking from main.js
 
 8) Cleaning every cell after ending game or before (not sure) new game start
+9) Continue rename css's elements in HTMl + CSS
 
 Later:
 4) Make bot / AI (LATER)
