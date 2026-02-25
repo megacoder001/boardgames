@@ -20,8 +20,9 @@ const canvasContext2d = canvas.getContext('2d');
 
 //Getting div's ID
 const resultWindow = document.getElementById('gameResult');
-const resultWindowClose = document.getElementById('gameResultClose')
-resultWindowClose.onclick = () => resultWindow.style.display = "none";
+const resultWindowText = document.getElementById('gameResultInfo');
+const resultWindowClose = document.getElementById('gameResultClose');
+resultWindowClose.onclick = () => resultWindow.style.display = 'none';
 
 // Define image sources in the order you want them drawn (background first)
 

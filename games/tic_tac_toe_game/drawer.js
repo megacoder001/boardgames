@@ -60,7 +60,7 @@ export class Drawer {
 
 	if (this.boardState.winner != WinnerState.NONE) {
 		this.resultWindow.style.display = 'block';
-
+//		document.querySelector('#gameResultInfo').innerText = "Hello World";
 //		this.resultWindowClose.onclick this.resultWindow.style.display = "none";
 	}
 	}

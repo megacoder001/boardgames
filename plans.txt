@@ -1,9 +1,9 @@
 In progress:
 
-8) Game Ending
-8.1) Cleaning every cell after ending game or before (not sure) new game start
-8.2) Print who's the winner after game and fix resultWindow
-8.3) Start new game + create button for that
+7) Game Ending
+7.2) Cleaning every cell after ending game or before (not sure) new game start
+7.3) Print who's the winner after game and fix resultWindow
+7.4) Start new game + create button for that
 
 9) Continue renaming css's elements in HTMl + CSS
 
