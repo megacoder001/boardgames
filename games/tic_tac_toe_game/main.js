@@ -1,7 +1,7 @@
 import {TicTacToeState, CellState} from './state.js';
 import {Drawer} from './drawer.js';
-import {loadImage} from './imageloader.js';
-import {CellDetection} from './cellIdx.js';
+import {loadImage} from './image_loader.js';
+import {CellDetection} from './cell_idx.js';
 
 //
 let boardState = new TicTacToeState();
@@ -27,9 +27,9 @@ const canvasContext2d = canvas.getContext('2d');
 // Define image sources in the order you want them drawn (background first)
 
 const imageUrls = [
-	'../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/tictactoefield.jpg', // Background
-	'../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/redcross01.png',     // Cross
-	'../../images/gamesimages/tictactoeimages/tictactoeprocessingimages/circleblue.png'  // Circle
+	'../../images/games_images/tic_tac_toe_images/tic_tac_toe_processing_images/tic_tac_toe_field.jpg', // Background
+	'../../images/games_images/tic_tac_toe_images/tic_tac_toe_processing_images/red_cross01.png',     // Cross
+	'../../images/games_images/tic_tac_toe_images/tic_tac_toe_processing_images/circle_blue.png'  // Circle
 ];
 
 // Load all images (they load in parallel but we wait for all)

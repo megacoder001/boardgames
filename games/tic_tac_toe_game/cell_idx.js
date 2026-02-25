@@ -62,10 +62,6 @@ export class CellDetection {
 			}
 
 			this.onCall(cellIdx);
-
-/*			this.boardState.nextTurn(cellIdx);
-			this.boardDrawer.draw();
-*/
 		})
         }
 };
