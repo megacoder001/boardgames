@@ -1,7 +1,64 @@
-#image {
-    width: 100%; /* Adjusts the image to the full width of its container */
-    height: 100% /* Maintains the aspect ratio */
-    /*text-align: center; /* Centers the image within the div */
-    /*display: inline-block; /* Allows centering */
+body {
+	color: white;
+	background-color: black;
+	text-align: center;
 }
 
+/*
+body {
+  display: flex;
+  flex-direction: column;
+}
+*/
+.content-wrapper {
+  flex: 1 0 auto;
+}
+
+footer {
+/*	marginin-top: auto; */
+	width: 100%;
+	height: auto;
+	background: white;
+	padding: 3px;
+
+}
+#image {
+	width: 100%; /* Adjusts the image to the full width of its container */
+	height: 100% /* Maintains the aspect ratio */
+	/*text-align: center; /* Centers the image within the div */
+	/*display: inline-block; /* Allows centering */
+}
+
+#githubFavicon {
+	background-color: white;
+	transition: all 1s ease;
+}
+
+#githubFavicon:hover {
+	background-color: black;
+}
+
+/*
+@keyframes pulse {
+	25% { text-shadow: 0 0 20px #00d4ff; }
+	50% { text-shadow: 0 0 10px #00d4ff; }
+	50% { text-shadow: 0 0 25px #00d4ff; }
+	50% { text-shadow: 0 0 15px #FEFE22; }
+	50% { text-shadow: 0 0 20px #FC0FC0; }
+}
+VEEEEEEEEEERYYYYYYYY BAD choice (why?)
+*/
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 5px #fff; }
+  50% { text-shadow: 0 0 20px #00d4ff, 0 0 30px #00d4ff; }
+  100% { text-shadow: 0 0 5px #fff; }
+}
+
+a:hover {
+	animation: pulse 5s infinite;
+}
+
+a {
+	color: green;
+}
