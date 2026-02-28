@@ -1,7 +1,7 @@
 import {TicTacToeState, CellState, WinnerState} from './state.js';
 
 export class Drawer {
-	constructor(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose, resultWindowText) {
+	constructor(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose, resultWindowText, scoreResultCount) {
 		// boardState is TicTacToeState
 		this.boardState = boardState;
 		this.canvasContext2d = canvasContext2d;
@@ -11,6 +11,7 @@ export class Drawer {
 		this.resultWindow = resultWindow;
 		this.resultWindowClose = resultWindowClose;
 		this.resultWindowText = resultWindowText;
+		this.scoreResultCount = scoreResultCount;
 	}
 
 	draw() {
@@ -73,9 +74,10 @@ export class Drawer {
 
 			else {
 				resultText = 'TIE! =(';
+				
 			}
-
 			this.resultWindowText.textContent = resultText;
+			this.scoreResultCount.textContent = scoreResultText;
 		}
 	}
 };

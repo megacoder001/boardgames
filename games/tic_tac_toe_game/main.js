@@ -3,31 +3,26 @@ import {Drawer} from './drawer.js';
 import {loadImage} from './image_loader.js';
 import {CellDetection} from './cell_idx.js';
 
-//
+// Getting board's info
 let boardState = new TicTacToeState();
-
-
-// Getting coordinates
-
-//
-
-// boardState.nextTurn(clickIdx.coordinatesDetection());
-
 
 // Getting image's ID
 const canvas = document.getElementById('boardCanvas');
 const canvasContext2d = canvas.getContext('2d');
 
-//Getting div's ID
+// Score Count
+const scoreCounting = document.getElementById('scoreSum');
+
+
+// Ending Game
 const resultWindow = document.getElementById('gameResult');
 const resultWindowText = document.getElementById('gameResultInfo');
 const resultWindowClose = document.getElementById('gameResultClose');
 resultWindowClose.onclick = () => {
-// resultWindow.style.width = '0%';
-// resultWindow.style.height = '0%';
 resultWindow.style.display = 'none';
 boardState.cleaningCompany();
 boardDrawer.draw();
+
 }
 
 // Define image sources in the order you want them drawn (background first)
@@ -44,7 +39,7 @@ const [background, cross, circle] = await Promise.all(
 );
 
 
-let boardDrawer = new Drawer(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose, resultWindowText);
+let boardDrawer = new Drawer(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose, resultWindowText, scoreCounting);
 let clickIdx = new CellDetection(canvas, (cellIdx) => {
 	boardState.nextTurn(cellIdx);
 	boardDrawer.draw();

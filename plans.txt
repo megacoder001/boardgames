@@ -1,3 +1,4 @@
+Tic-Tac-Toe (This project is suspended):
 In progress:
 
 7) Game Ending
@@ -8,6 +9,8 @@ In progress:
 10) Modify visual
 10.1) Github's actual + unactual icon (if have no Network)
 10.2) Buff Menu
+
+11) To show who is turning
 
 Later:
 4) Make bot / AI (LATER)

@@ -16,9 +16,6 @@ export class CellDetection {
 			const scaleY = this.clickArea.height / rect.height;
 			const x = (event.clientX - rect.left) * scaleX;
 			const y = (event.clientY - rect.top) * scaleY;
-
-
-//			console.log('X: ' + x + ', Y: ' + y);
 			let cellIdx;
 
 // make brackets in if & make by percentages
