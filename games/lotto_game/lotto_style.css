@@ -9,32 +9,32 @@ body {
 
 #next_barrel {
 	position: fixed;
-	top: 45%;
-	left: 40%;
+	top: 51.5%;
+	left: 35%;
 	width: 5%;
 	height: 5%;
 	background-color: red;
 }
 
 .barrel-result {
-	left: 10%;
-	position: relative;
+	position: fixed;
+	width: 5%;
+	height: 5%;
+	top: 50%;
+	left: 45.5%;
 	display: inline-block;
 }
 
 #barrel-result-image {
-	position: fixed;
-	top: 43.5%;
-	left: 48%;
-	width: 5%;
+	width: 100%;
 	height: auto;
 
 }
 
 .overlay-text {
 	position: absolute;
-	top: 5%;
-	left: 5%;
+	top: 50%;
+	left: 50%;
 	transform: translateX(-50%);
 	color: white;
 	font-size: 20px;
@@ -44,7 +44,22 @@ body {
 
 .ticket-Canvas {
 
-	width: 200px;
+	width: 100%;
 	height: auto;
 
+}
+
+.player-tickets {
+	position: fixed;
+	width: 15%;
+	height: auto;
+}
+
+#player-tickets-0 {
+	left: 35%;
+}
+
+#player-tickets-1 {
+	left: 35%;
+	bottom: 0%;
 }
