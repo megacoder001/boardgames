@@ -28,7 +28,7 @@ boardDrawer.draw();
 // Define image sources in the order you want them drawn (background first)
 
 const imageUrls = [
-	'../../images/games_images/tic_tac_toe_images/tic_tac_toe_processing_images/tic_tac_toe_field.jpg', // Background
+	'../../images/games_images/tic_tac_toe_images/tic_tac_toe_processing_images/field.jpg', // Background
 	'../../images/games_images/tic_tac_toe_images/tic_tac_toe_processing_images/red_cross01.png',     // Cross
 	'../../images/games_images/tic_tac_toe_images/tic_tac_toe_processing_images/circle_blue.png'  // Circle
 ];

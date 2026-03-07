@@ -43,8 +43,8 @@ footer {
 }
 
 #boardCanvas {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 /*    border: 1px solid black;  Optional: for visibility */
 }
 
@@ -70,9 +70,4 @@ canvasIdxDetection {
 	margin: 15% auto;
 	width: 35%;
 	height: 15%;
-}
-
-#gameResultInside {
-	color: black;
-	background: white;
 }
