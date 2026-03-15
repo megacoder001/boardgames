@@ -1,10 +1,16 @@
 import {loadImage} from '../tic_tac_toe_game/image_loader.js';
-import {barNum} from './ran_num.js';
+// import {barNum} from './ran_num.js';
 
 // creating ran num
-const overlayText = document.getElementById('overlay-text');
+const overlayText = document.getElementById('barrel-result-text');
+const nextBarrelBtn = document.getElementById('next_barrel');
 
-let barrelNum = new barNum
+// let barrelNum = new barNum;
+
+nextBarrelBtn.onclick = () => {
+overlayText.innerText = '90';
+
+}
 
 // let overlay-text = barNum
 
