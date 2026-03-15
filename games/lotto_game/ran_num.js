@@ -1,11 +1,12 @@
-/*function getBarNum() {
-	return Math.random() * (1, 90) + 1;
-}
+export function getBarNum() {
+	const unusedNums = {};
+	for (let ind = 1; ind <= 90; ind++) {
+		unusedNums[ind] = true;
+	}
 
-barNum = new getBarNum();
-usedNums = [1::90];
+	const keys = Object.keys(unusedNums);
+	const barNum = keys[Math.floor(Math.random() * keys.length)];
 
-while (barNum in usedNums) {
-	barNum = getBarNum();
+	delete unusedNums[barNum];
+	return barNum;
 }
-*\
