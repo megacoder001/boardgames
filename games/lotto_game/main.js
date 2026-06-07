@@ -1,11 +1,18 @@
 import {loadImage} from '../tic_tac_toe_game/image_loader.js';
-import {getBarNum} from './ran_num.js';
+import {getBarNum, resetBarNums} from './ran_num.js';
 
 const TICKET_ROWS = 3;
 const TICKET_COLUMNS = 9;
 const NUMS_IN_ROW = 5;
+const PLAYERS = 2;
+const TICKETS_BY_PLAYER = 3;
+const NUMS_IN_TICKET = TICKET_ROWS * NUMS_IN_ROW;
 const TICKET_IMAGE_URL = '../../images/games_images/lotto_images/lotto_processing_images/ticket.bmp';
 const CROSS_IMAGE_URL = '../../images/games_images/tic_tac_toe_images/tic_tac_toe_processing_images/red_cross01.png';
+const PLAYER_NAMES = [
+	'Верхний',
+	'Нижний',
+];
 const COLUMN_NUMS = [
 	[1, 9],
 	[10, 19],
@@ -121,11 +128,13 @@ function drawCross(ticketCanvas, cross, row, column) {
 	context.drawImage(cross, crossLeft, crossTop, crossWidth, crossHeight);
 }
 
-function markBarNum(ticketStates, cross, barNum) {
+function markBarNum(ticketStates, playerStates, cross, barNum) {
 	for (const ticketState of ticketStates) {
 		for (let row = 0; row < TICKET_ROWS; row++) {
 			for (let column = 0; column < TICKET_COLUMNS; column++) {
-				if (ticketState.nums[row][column] === barNum) {
+				if (ticketState.nums[row][column] === barNum && !ticketState.marked[row][column]) {
+					ticketState.marked[row][column] = true;
+					playerStates[ticketState.player].markedNums++;
 					drawCross(ticketState.canvas, cross, row, column);
 				}
 			}
@@ -133,9 +142,32 @@ function markBarNum(ticketStates, cross, barNum) {
 	}
 }
 
+function getWinningPlayers(playerStates) {
+	const winningPlayers = [];
+
+	for (let player = 0; player < playerStates.length; player++) {
+		if (playerStates[player].markedNums === playerStates[player].totalNums) {
+			winningPlayers.push(player);
+		}
+	}
+
+	return winningPlayers;
+}
+
+function getWinMessage(winningPlayers) {
+	if (winningPlayers.length === 1) {
+		return PLAYER_NAMES[winningPlayers[0]] + ' игрок победил!';
+	}
+
+	return 'Верхний и Нижний игроки победили!';
+}
+
 // creating ran num
 const overlayText = document.getElementById('barrel-result-text');
 const nextBarrelBtn = document.getElementById('next_barrel');
+const resultWindow = document.getElementById('game-result');
+const resultWindowText = document.getElementById('game-result-info');
+const newGameBtn = document.getElementById('new-game');
 
 // let overlay-text = barNum
 
@@ -150,30 +182,70 @@ const [ticket, cross] = await Promise.all (
 
 // printing ticket
 
-const ticketStates = [];
+let ticketStates = [];
+let playerStates = [];
+let gameOver = false;
 
-for (let player = 0; player < 2; player++) {
-	const currentPlayerTickets = document.getElementById('player-tickets-' + player);
+function createPlayerStates() {
+	return Array.from(
+		{length: PLAYERS},
+		() => ({
+			markedNums: 0,
+			totalNums: TICKETS_BY_PLAYER * NUMS_IN_TICKET,
+		}),
+	);
+}
 
+function drawTickets() {
+	ticketStates = [];
+	playerStates = createPlayerStates();
 
-	for (let i = 0; i < 3; i++) {
-		const ticketCanvas = document.createElement('canvas');
-		currentPlayerTickets.appendChild(ticketCanvas);
-		ticketCanvas.className = 'ticket-Canvas';
-		ticketCanvas.width = ticket.width;
-		ticketCanvas.height = ticket.height;
+	for (let player = 0; player < PLAYERS; player++) {
+		const currentPlayerTickets = document.getElementById('player-tickets-' + player);
+		currentPlayerTickets.innerHTML = '';
 
-		ticketCanvas.getContext('2d').drawImage(ticket, 0, 0, ticketCanvas.width, ticketCanvas.height);
-		const ticketNums = createTicketNums();
-		drawTicketNums(ticketCanvas, ticketNums);
-		ticketStates.push({
-			canvas: ticketCanvas,
-			nums: ticketNums,
-		});
+		for (let i = 0; i < TICKETS_BY_PLAYER; i++) {
+			const ticketCanvas = document.createElement('canvas');
+			currentPlayerTickets.appendChild(ticketCanvas);
+			ticketCanvas.className = 'ticket-Canvas';
+			ticketCanvas.width = ticket.width;
+			ticketCanvas.height = ticket.height;
+
+			ticketCanvas.getContext('2d').drawImage(ticket, 0, 0, ticketCanvas.width, ticketCanvas.height);
+			const ticketNums = createTicketNums();
+			drawTicketNums(ticketCanvas, ticketNums);
+			ticketStates.push({
+				canvas: ticketCanvas,
+				marked: Array.from(
+					{length: TICKET_ROWS},
+					() => Array(TICKET_COLUMNS).fill(false),
+				),
+				nums: ticketNums,
+				player,
+			});
+		}
 	}
 }
 
+function showResult(winningPlayers) {
+	gameOver = true;
+	resultWindowText.innerText = getWinMessage(winningPlayers);
+	resultWindow.style.display = 'block';
+}
+
+function startGame() {
+	resetBarNums();
+	gameOver = false;
+	overlayText.innerText = '';
+	resultWindow.style.display = 'none';
+	drawTickets();
+}
+
 nextBarrelBtn.onclick = () => {
+	if (gameOver) {
+		return;
+	}
+
 	const barNum = getBarNum();
 
 	if (barNum === undefined) {
@@ -182,5 +254,14 @@ nextBarrelBtn.onclick = () => {
 
 	const selectedBarNum = Number(barNum);
 	overlayText.innerText = selectedBarNum;
-	markBarNum(ticketStates, cross, selectedBarNum);
+	markBarNum(ticketStates, playerStates, cross, selectedBarNum);
+
+	const winningPlayers = getWinningPlayers(playerStates);
+	if (winningPlayers.length > 0) {
+		showResult(winningPlayers);
+	}
 }
+
+newGameBtn.onclick = startGame;
+
+startGame();
