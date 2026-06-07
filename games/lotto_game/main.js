@@ -231,6 +231,7 @@ function updateGameMessageLanguage() {
 const overlayText = document.getElementById('barrel-result-text');
 const nextBarrelBtn = document.getElementById('next_barrel');
 const gameMessage = document.getElementById('game-message');
+const scoreText = document.getElementById('lotto-score');
 const resultWindow = document.getElementById('game-result');
 const resultWindowText = document.getElementById('game-result-info');
 const newGameBtn = document.getElementById('new-game');
@@ -250,7 +251,32 @@ const [ticket, cross] = await Promise.all (
 
 let ticketStates = [];
 let playerStates = [];
+let scoreState = Array(PLAYERS).fill(0);
 let gameOver = false;
+
+function formatScore(score) {
+	return String(score);
+}
+
+function updateScoreText() {
+	scoreText.innerText = t('lotto.score', {
+		lower: formatScore(scoreState[1]),
+		upper: formatScore(scoreState[0]),
+	});
+}
+
+function addScore(winningPlayers) {
+	if (winningPlayers.length === PLAYERS) {
+		for (let player = 0; player < PLAYERS; player++) {
+			scoreState[player] += 0.5;
+		}
+	}
+	else if (winningPlayers.length === 1) {
+		scoreState[winningPlayers[0]] += 1;
+	}
+
+	updateScoreText();
+}
 
 function createPlayerStates() {
 	return Array.from(
@@ -326,6 +352,7 @@ nextBarrelBtn.onclick = () => {
 
 	const winningPlayers = getWinningPlayers(playerStates);
 	if (winningPlayers.length > 0) {
+		addScore(winningPlayers);
 		showResult(winningPlayers);
 		return;
 	}
@@ -336,6 +363,8 @@ nextBarrelBtn.onclick = () => {
 newGameBtn.onclick = startGame;
 
 window.addEventListener('languagechange', () => {
+	updateScoreText();
+
 	if (gameOver) {
 		showResult(getWinningPlayers(playerStates));
 		return;
@@ -344,4 +373,5 @@ window.addEventListener('languagechange', () => {
 	updateGameMessageLanguage();
 });
 
+updateScoreText();
 startGame();

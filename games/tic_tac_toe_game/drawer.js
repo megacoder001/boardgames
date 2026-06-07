@@ -13,12 +13,18 @@ export class Drawer {
 		this.resultWindowClose = resultWindowClose;
 		this.resultWindowText = resultWindowText;
 		this.scoreResultCount = scoreResultCount;
+		this.scoreState = {
+			circle: 0,
+			cross: 0,
+		};
+		this.resultScored = false;
 
 		window.addEventListener('languagechange', () => {
 			if (this.boardState.winner != WinnerState.NONE) {
 				this.resultWindowText.textContent = this.getResultText();
-				this.scoreResultCount.textContent = t('ticTacToe.score');
 			}
+
+			this.updateScoreText();
 		});
 	}
 
@@ -32,6 +38,34 @@ export class Drawer {
 		}
 
 		return t('ticTacToe.tie');
+	}
+
+	formatScore(score) {
+		return String(score);
+	}
+
+	updateScoreText() {
+		this.scoreResultCount.textContent = t('ticTacToe.score', {
+			circle: t('ticTacToe.circleScoreName'),
+			circleScore: this.formatScore(this.scoreState.circle),
+			cross: t('ticTacToe.crossScoreName'),
+			crossScore: this.formatScore(this.scoreState.cross),
+		});
+	}
+
+	addResultScore() {
+		if (this.boardState.winner == WinnerState.CROSS) {
+			this.scoreState.cross += 1;
+		}
+		else if (this.boardState.winner == WinnerState.CIRCLE) {
+			this.scoreState.circle += 1;
+		}
+		else if (this.boardState.winner == WinnerState.TIE) {
+			this.scoreState.cross += 0.5;
+			this.scoreState.circle += 0.5;
+		}
+
+		this.updateScoreText();
 	}
 
 	draw() {
@@ -80,10 +114,18 @@ export class Drawer {
 			}
 		}
 
-		if (this.boardState.winner != WinnerState.NONE) {
-			this.resultWindow.style.display = 'block';
-			this.resultWindowText.textContent = this.getResultText();
-			this.scoreResultCount.textContent = t('ticTacToe.score');
+		if (this.boardState.winner == WinnerState.NONE) {
+			this.resultScored = false;
+			this.updateScoreText();
+			return;
 		}
+
+		if (!this.resultScored) {
+			this.addResultScore();
+			this.resultScored = true;
+		}
+
+		this.resultWindow.style.display = 'block';
+		this.resultWindowText.textContent = this.getResultText();
 	}
 };
