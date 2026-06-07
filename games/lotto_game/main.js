@@ -13,6 +13,10 @@ const PLAYER_NAMES = [
 	'Верхний',
 	'Нижний',
 ];
+const PLAYER_GENITIVE_NAMES = [
+	'верхнего',
+	'нижнего',
+];
 const COLUMN_NUMS = [
 	[1, 9],
 	[10, 19],
@@ -129,24 +133,34 @@ function drawCross(ticketCanvas, cross, row, column) {
 }
 
 function markBarNum(ticketStates, playerStates, cross, barNum) {
+	const playersWithCompletedTickets = new Set();
+
 	for (const ticketState of ticketStates) {
 		for (let row = 0; row < TICKET_ROWS; row++) {
 			for (let column = 0; column < TICKET_COLUMNS; column++) {
 				if (ticketState.nums[row][column] === barNum && !ticketState.marked[row][column]) {
 					ticketState.marked[row][column] = true;
-					playerStates[ticketState.player].markedNums++;
+					ticketState.markedNums++;
 					drawCross(ticketState.canvas, cross, row, column);
 				}
 			}
 		}
+
+		if (!ticketState.completed && ticketState.markedNums === NUMS_IN_TICKET) {
+			ticketState.completed = true;
+			playerStates[ticketState.player].completedTickets++;
+			playersWithCompletedTickets.add(ticketState.player);
+		}
 	}
+
+	return Array.from(playersWithCompletedTickets);
 }
 
 function getWinningPlayers(playerStates) {
 	const winningPlayers = [];
 
 	for (let player = 0; player < playerStates.length; player++) {
-		if (playerStates[player].markedNums === playerStates[player].totalNums) {
+		if (playerStates[player].completedTickets === TICKETS_BY_PLAYER) {
 			winningPlayers.push(player);
 		}
 	}
@@ -155,16 +169,45 @@ function getWinningPlayers(playerStates) {
 }
 
 function getWinMessage(winningPlayers) {
+	if (winningPlayers.length === PLAYERS) {
+		return 'Оба игрока победили одновременно!';
+	}
+
 	if (winningPlayers.length === 1) {
 		return PLAYER_NAMES[winningPlayers[0]] + ' игрок победил!';
 	}
 
-	return 'Верхний и Нижний игроки победили!';
+	return 'Игра закончилась!';
+}
+
+function getCompletedTicketMessage(playerState, player) {
+	const cardsCompleted = playerState.completedTickets;
+	const filledWord = cardsCompleted === 1 ? 'заполнена' : 'заполнены';
+	const cardWord = cardsCompleted === 1 ? 'карта' : 'карты';
+
+	return 'У ' + PLAYER_GENITIVE_NAMES[player] + ' игрока полностью ' +
+		filledWord + ' ' + cardsCompleted + ' ' + cardWord + ' из ' +
+		TICKETS_BY_PLAYER + '!';
+}
+
+function showCompletedTicketMessages(playersWithCompletedTickets, playerStates, gameMessage) {
+	const messages = [];
+
+	for (const player of playersWithCompletedTickets) {
+		if (playerStates[player].completedTickets < TICKETS_BY_PLAYER) {
+			messages.push(getCompletedTicketMessage(playerStates[player], player));
+		}
+	}
+
+	if (messages.length > 0) {
+		gameMessage.innerText = messages.join('\n');
+	}
 }
 
 // creating ran num
 const overlayText = document.getElementById('barrel-result-text');
 const nextBarrelBtn = document.getElementById('next_barrel');
+const gameMessage = document.getElementById('game-message');
 const resultWindow = document.getElementById('game-result');
 const resultWindowText = document.getElementById('game-result-info');
 const newGameBtn = document.getElementById('new-game');
@@ -190,8 +233,7 @@ function createPlayerStates() {
 	return Array.from(
 		{length: PLAYERS},
 		() => ({
-			markedNums: 0,
-			totalNums: TICKETS_BY_PLAYER * NUMS_IN_TICKET,
+			completedTickets: 0,
 		}),
 	);
 }
@@ -216,10 +258,12 @@ function drawTickets() {
 			drawTicketNums(ticketCanvas, ticketNums);
 			ticketStates.push({
 				canvas: ticketCanvas,
+				completed: false,
 				marked: Array.from(
 					{length: TICKET_ROWS},
 					() => Array(TICKET_COLUMNS).fill(false),
 				),
+				markedNums: 0,
 				nums: ticketNums,
 				player,
 			});
@@ -236,6 +280,7 @@ function showResult(winningPlayers) {
 function startGame() {
 	resetBarNums();
 	gameOver = false;
+	gameMessage.innerText = '';
 	overlayText.innerText = '';
 	resultWindow.style.display = 'none';
 	drawTickets();
@@ -254,12 +299,15 @@ nextBarrelBtn.onclick = () => {
 
 	const selectedBarNum = Number(barNum);
 	overlayText.innerText = selectedBarNum;
-	markBarNum(ticketStates, playerStates, cross, selectedBarNum);
+	const playersWithCompletedTickets = markBarNum(ticketStates, playerStates, cross, selectedBarNum);
 
 	const winningPlayers = getWinningPlayers(playerStates);
 	if (winningPlayers.length > 0) {
 		showResult(winningPlayers);
+		return;
 	}
+
+	showCompletedTicketMessages(playersWithCompletedTickets, playerStates, gameMessage);
 }
 
 newGameBtn.onclick = startGame;

@@ -69,6 +69,19 @@ body {
 	top: calc(var(--lotto-controls-top) + var(--lotto-barrel-size) + var(--lotto-tickets-gap));
 }
 
+#game-message {
+	position: fixed;
+	top: var(--lotto-controls-top);
+	left: calc(45.5% + var(--lotto-barrel-size) + 12px);
+	width: 28%;
+	min-height: var(--lotto-barrel-size);
+	display: flex;
+	align-items: center;
+	white-space: pre-line;
+	font-size: 20px;
+	font-weight: bold;
+}
+
 #game-result {
 	display: none;
 	position: fixed;
