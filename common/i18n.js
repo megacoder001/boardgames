@@ -265,14 +265,21 @@ function injectLanguageStyles() {
 			gap: 8px;
 			padding: 8px 10px;
 			border-radius: 6px;
-			background: rgba(255, 255, 255, 0.9);
-			color: #111;
+			border: 1px solid #263238;
+			background: rgba(27, 27, 27, 0.92);
+			color: white;
 			font-family: Arial, sans-serif;
 			font-size: 14px;
+			box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
 		}
 
 		.language-selector select {
+			border: 0;
+			border-radius: 4px;
+			background: #73d2de;
+			color: #171717;
 			font-size: 14px;
+			font-weight: bold;
 		}
 	`;
 	document.head.appendChild(style);

@@ -1,56 +1,55 @@
 body {
-    background-color: black;
-    color: white;
-}
-#ticTacToeImageBackground {
-    width: 100%; /* Adjusts the image to the full width of its container */
-    height: 100%; /* Maintains the aspect ratio */
-    /* text-align: center; /* Centers the image within the div */
-    /* display: inline-block; /* Allows centering */
+	min-height: 100vh;
+	margin: 0;
+	padding: 24px;
+	box-sizing: border-box;
+	background: #121212;
+	color: white;
+	font-family: Arial, sans-serif;
 }
 
-#ticTacToeScore {
-    text-align: right;
+a {
+	color: #91c9ff;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffd166;
+}
+
+body > h1:first-of-type {
+	margin: 0;
+	font-size: 22px;
 }
 
 .ticTacToeTopic {
-    text-align: center
+	margin: 8px 0 12px;
+	text-align: center;
+	font-size: clamp(34px, 5vw, 64px);
 }
 
-footer {
-    text-align: right;
+#scoreSum {
+	width: min(760px, 92vw);
+	margin: 0 auto 18px;
+	color: #ffd166;
+	font-size: 24px;
 }
 
-/* pasted code from AI */
-  .container {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-  }
-  .image01 {
-    display: block;
-  }
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none; /* Hidden by default */
-  }
-
-.canvas-container {
-    width: 100%; /* Or some other defined width */
-    height: 100%; /* Example: full viewport height */
+#canvasIdxDetection {
+	width: min(760px, 92vw);
+	aspect-ratio: 2 / 1;
+	margin: 0 auto;
+	border: 1px solid #263238;
+	border-radius: 8px;
+	background: #1b1b1b;
+	overflow: hidden;
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 #boardCanvas {
 	width: 100%;
 	height: 100%;
-/*    border: 1px solid black;  Optional: for visibility */
-}
-
-canvasIdxDetection {
-	width: 100%;
-	height: 100%;
+	display: block;
 }
 
 #gameResult {
@@ -60,14 +59,48 @@ canvasIdxDetection {
 	left: 0;
 	width: 100%;
 	height: 100%;
-/*	background:rgba(0,0,0,0.5); */
+	background: rgba(0, 0, 0, 0.55);
 	backdrop-filter: blur(5px);
+	z-index: 10;
 }
 
 #gameResultInside {
-	color: black;
-	background: white;
-	margin: 15% auto;
-	width: 35%;
-	height: 15%;
+	color: white;
+	background: #1b1b1b;
+	margin: 18% auto;
+	width: min(440px, 86vw);
+	min-height: 15%;
+	padding: 24px;
+	text-align: center;
+	border: 1px solid #263238;
+	border-radius: 8px;
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+#gameResultInfo {
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0 0 18px;
+}
+
+#gameResultClose {
+	border: 0;
+	border-radius: 6px;
+	background: #73d2de;
+	color: #171717;
+	padding: 12px 18px;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#gameResultClose:hover {
+	background: #a3e4ea;
+}
+
+footer {
+	width: min(760px, 92vw);
+	margin: 24px auto 0;
+	color: #cfd8dc;
+	text-align: right;
 }
