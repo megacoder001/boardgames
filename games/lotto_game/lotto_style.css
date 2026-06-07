@@ -1,6 +1,11 @@
 body {
 	color: white;
 	background-color: black;
+	--lotto-controls-top: 50%;
+	--lotto-controls-height: 5%;
+	--lotto-button-offset-top: 1.5%;
+	--lotto-barrel-size: 5vw;
+	--lotto-tickets-gap: 8px;
 }
 
 #topic {
@@ -9,25 +14,25 @@ body {
 
 #next_barrel {
 	position: fixed;
-	top: 51.5%;
+	top: calc(var(--lotto-controls-top) + var(--lotto-button-offset-top));
 	left: 35%;
 	width: 5%;
-	height: 5%;
+	height: var(--lotto-controls-height);
 	background-color: red;
 }
 
 .barrel-result {
 	position: fixed;
-	width: 5%;
-	height: 5%;
-	top: 50%;
+	width: var(--lotto-barrel-size);
+	height: var(--lotto-barrel-size);
+	top: var(--lotto-controls-top);
 	left: 45.5%;
 	display: inline-block;
 }
 
 #barrel-result-image {
 	width: 100%;
-	height: auto;
+	height: 100%;
 
 }
 
@@ -35,7 +40,7 @@ body {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translate(-50%, -50%);
 	color: white;
 	font-size: 20px;
 	padding: 5px 10px;
@@ -53,13 +58,13 @@ body {
 	position: fixed;
 	width: 15%;
 	height: auto;
+	left: 35%;
 }
 
 #player-tickets-0 {
-	left: 35%;
+	bottom: calc(100% - var(--lotto-controls-top) + var(--lotto-tickets-gap));
 }
 
 #player-tickets-1 {
-	left: 35%;
-	bottom: 2%;
+	top: calc(var(--lotto-controls-top) + var(--lotto-barrel-size) + var(--lotto-tickets-gap));
 }
