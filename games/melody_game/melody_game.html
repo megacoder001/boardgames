@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='en-US'>
+<html lang='en' data-i18n-title='melody.title'>
 
 <head>
 	<title>Melody Game</title>
@@ -9,36 +9,37 @@
 </head>
 
 <body>
+	<script type='module' src='../../common/i18n.js'></script>
 	<script type='module' src='main.js'></script>
 
-	<h1><a href='../../menu/main_menu/board_games_main.html'>Exit to Main Menu</a></h1>
-	<h1 id='topic'>Melody Game</h1>
+	<h1><a href='../../menu/main_menu/board_games_main.html' data-i18n='global.exitMainMenu'>Exit to Main Menu</a></h1>
+	<h1 id='topic' data-i18n='melody.title'>Melody Game</h1>
 
 	<div id='game-panel'>
 		<div id='controls'>
-			<button id='new-note'>Сыграть ноту</button>
-			<button id='repeat-note' disabled>Повторить</button>
+			<button id='new-note' data-i18n='melody.playNote'>Сыграть ноту</button>
+			<button id='repeat-note' data-i18n='melody.repeat' disabled>Повторить</button>
 		</div>
-		<p id='game-status'>Нажми "Сыграть ноту", послушай звук и выбери клавишу.</p>
-		<p id='score'>Верно: 0 | Ошибки: 0</p>
+		<p id='game-status' data-i18n='melody.initialStatus'>Нажми "Сыграть ноту", послушай звук и выбери клавишу.</p>
+		<p id='score'></p>
 	</div>
 
-	<div id='piano' aria-label='Piano keyboard'>
+	<div id='piano' aria-label='Piano keyboard' data-i18n-aria-label='a11y.pianoKeyboard'>
 		<div id='white-keys'>
-			<button class='white-key piano-key' data-note='C' type='button'>До</button>
-			<button class='white-key piano-key' data-note='D' type='button'>Ре</button>
-			<button class='white-key piano-key' data-note='E' type='button'>Ми</button>
-			<button class='white-key piano-key' data-note='F' type='button'>Фа</button>
-			<button class='white-key piano-key' data-note='G' type='button'>Соль</button>
-			<button class='white-key piano-key' data-note='A' type='button'>Ля</button>
-			<button class='white-key piano-key' data-note='B' type='button'>Си</button>
+			<button class='white-key piano-key' data-note='C' data-i18n='note.C' type='button'>До</button>
+			<button class='white-key piano-key' data-note='D' data-i18n='note.D' type='button'>Ре</button>
+			<button class='white-key piano-key' data-note='E' data-i18n='note.E' type='button'>Ми</button>
+			<button class='white-key piano-key' data-note='F' data-i18n='note.F' type='button'>Фа</button>
+			<button class='white-key piano-key' data-note='G' data-i18n='note.G' type='button'>Соль</button>
+			<button class='white-key piano-key' data-note='A' data-i18n='note.A' type='button'>Ля</button>
+			<button class='white-key piano-key' data-note='B' data-i18n='note.B' type='button'>Си</button>
 		</div>
 		<div id='black-keys'>
-			<button class='black-key piano-key black-key-c-sharp' data-note='C#' type='button'>До#</button>
-			<button class='black-key piano-key black-key-d-sharp' data-note='D#' type='button'>Ре#</button>
-			<button class='black-key piano-key black-key-f-sharp' data-note='F#' type='button'>Фа#</button>
-			<button class='black-key piano-key black-key-g-sharp' data-note='G#' type='button'>Соль#</button>
-			<button class='black-key piano-key black-key-a-sharp' data-note='A#' type='button'>Ля#</button>
+			<button class='black-key piano-key black-key-c-sharp' data-note='C#' data-i18n='note.C#' type='button'>До#</button>
+			<button class='black-key piano-key black-key-d-sharp' data-note='D#' data-i18n='note.D#' type='button'>Ре#</button>
+			<button class='black-key piano-key black-key-f-sharp' data-note='F#' data-i18n='note.F#' type='button'>Фа#</button>
+			<button class='black-key piano-key black-key-g-sharp' data-note='G#' data-i18n='note.G#' type='button'>Соль#</button>
+			<button class='black-key piano-key black-key-a-sharp' data-note='A#' data-i18n='note.A#' type='button'>Ля#</button>
 		</div>
 	</div>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang='en'>
+<html lang='en' data-i18n-title='lotto.title'>
 
 <head>
 	<title>Lotto</title>
@@ -10,18 +10,19 @@
 
 <body>
 	<!-- import JS -->
+	<script type='module' src='../../common/i18n.js'></script>
 	<script type='module' src='main.js'></script>
 
-	<h1><a href='../../menu/main_menu/board_games_main.html'>Exit to Main Menu</a></h1>
+	<h1><a href='../../menu/main_menu/board_games_main.html' data-i18n='global.exitMainMenu'>Exit to Main Menu</a></h1>
 
-	<h1 id='topic'>Lotto</h1>
+	<h1 id='topic' data-i18n='lotto.title'>Lotto</h1>
 	<div class='player-tickets' id='player-tickets-0'>
 	</div>
 
 	<div class='player-tickets' id='player-tickets-1'>
 	</div>
 
-	<button id='next_barrel'>Next barrel</button>
+	<button id='next_barrel' data-i18n='lotto.nextBarrel'>Next barrel</button>
 	<div class='barrel-result'>
 		<img id='barrel-result-image' src='../../images/games_images/lotto_images/lotto_processing_images/colorful_circle.png' alt='barrel'></img>
 		<div class='overlay-text' id='barrel-result-text'></div>
@@ -31,7 +32,7 @@
 	<div id='game-result'>
 		<div id='game-result-inside'>
 			<p id='game-result-info'></p>
-			<button id='new-game'>Начать новую игру</button>
+			<button id='new-game' data-i18n='lotto.newGame'>Начать новую игру</button>
 		</div>
 	</div>
 

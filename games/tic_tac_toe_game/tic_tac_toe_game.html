@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='en-US'>
+<html lang='en' data-i18n-title='ticTacToe.title'>
 
 <head>
 
@@ -12,13 +12,14 @@
 
 <body>
 	<!-- import JS -->
+	<script type='module' src='../../common/i18n.js'></script>
 	<script type='module' src='main.js'></script>
 
-	<h1><a href='../../menu/main_menu/board_games_main.html'>Exit to Main Menu</a></h1>
+	<h1><a href='../../menu/main_menu/board_games_main.html' data-i18n='global.exitMainMenu'>Exit to Main Menu</a></h1>
 	<!-- Delete space elements after text upper-->
 
-	<h1 class='ticTacToeTopic'>Tic-Tac-Toe</h1>
-	<h2 id='scoreSum'>Your score:</h2>
+	<h1 class='ticTacToeTopic' data-i18n='ticTacToe.title'>Tic-Tac-Toe</h1>
+	<h2 id='scoreSum' data-i18n='ticTacToe.score'>Your score:</h2>
 
 	<div id='canvasIdxDetection'>
 		<canvas id='boardCanvas'></canvas>
@@ -27,13 +28,13 @@
 	<div id='gameResult'>
 		<div id='gameResultInside'>
 			<p id='gameResultInfo'></p>
-			<button id='gameResultClose'>I've got</button>
+			<button id='gameResultClose' data-i18n='ticTacToe.closeResult'>I've got</button>
 		</div>
 	</div>
 
 	<footer>
 
-		<h2>Board Games Inc.</h2>
+		<h2 data-i18n='global.company'>Board Games Inc.</h2>
 
 	</footer>
 

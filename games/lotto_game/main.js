@@ -1,4 +1,5 @@
 import {loadImage} from '../tic_tac_toe_game/image_loader.js';
+import {t} from '../../common/i18n.js';
 import {getBarNum, resetBarNums} from './ran_num.js';
 
 const TICKET_ROWS = 3;
@@ -9,14 +10,6 @@ const TICKETS_BY_PLAYER = 3;
 const NUMS_IN_TICKET = TICKET_ROWS * NUMS_IN_ROW;
 const TICKET_IMAGE_URL = '../../images/games_images/lotto_images/lotto_processing_images/ticket.bmp';
 const CROSS_IMAGE_URL = '../../images/games_images/tic_tac_toe_images/tic_tac_toe_processing_images/red_cross01.png';
-const PLAYER_NAMES = [
-	'Верхний',
-	'Нижний',
-];
-const PLAYER_GENITIVE_NAMES = [
-	'верхнего',
-	'нижнего',
-];
 const COLUMN_NUMS = [
 	[1, 9],
 	[10, 19],
@@ -170,24 +163,38 @@ function getWinningPlayers(playerStates) {
 
 function getWinMessage(winningPlayers) {
 	if (winningPlayers.length === PLAYERS) {
-		return 'Оба игрока победили одновременно!';
+		return t('lotto.bothWon');
 	}
 
 	if (winningPlayers.length === 1) {
-		return PLAYER_NAMES[winningPlayers[0]] + ' игрок победил!';
+		return t('lotto.singleWon', {
+			player: getPlayerName(winningPlayers[0]),
+		});
 	}
 
-	return 'Игра закончилась!';
+	return t('lotto.gameEnded');
+}
+
+function getPlayerName(player) {
+	return t(player === 0 ? 'lotto.upperPlayer' : 'lotto.lowerPlayer');
+}
+
+function getPlayerGenitiveName(player) {
+	return t(player === 0 ? 'lotto.upperPlayerGenitive' : 'lotto.lowerPlayerGenitive');
 }
 
 function getCompletedTicketMessage(playerState, player) {
 	const cardsCompleted = playerState.completedTickets;
-	const filledWord = cardsCompleted === 1 ? 'заполнена' : 'заполнены';
-	const cardWord = cardsCompleted === 1 ? 'карта' : 'карты';
+	const filledWord = cardsCompleted === 1 ? t('lotto.oneFilled') : t('lotto.severalFilled');
+	const cardWord = cardsCompleted === 1 ? t('lotto.oneCard') : t('lotto.severalCards');
 
-	return 'У ' + PLAYER_GENITIVE_NAMES[player] + ' игрока полностью ' +
-		filledWord + ' ' + cardsCompleted + ' ' + cardWord + ' из ' +
-		TICKETS_BY_PLAYER + '!';
+	return t('lotto.completedCards', {
+		cardWord,
+		count: cardsCompleted,
+		filledWord,
+		player: getPlayerGenitiveName(player),
+		total: TICKETS_BY_PLAYER,
+	});
 }
 
 function showCompletedTicketMessages(playersWithCompletedTickets, playerStates, gameMessage) {
@@ -202,6 +209,22 @@ function showCompletedTicketMessages(playersWithCompletedTickets, playerStates, 
 	if (messages.length > 0) {
 		gameMessage.innerText = messages.join('\n');
 	}
+}
+
+function updateGameMessageLanguage() {
+	const playersWithCompletedTickets = [];
+
+	for (let player = 0; player < playerStates.length; player++) {
+		if (
+			playerStates[player].completedTickets > 0 &&
+			playerStates[player].completedTickets < TICKETS_BY_PLAYER
+		) {
+			playersWithCompletedTickets.push(player);
+		}
+	}
+
+	gameMessage.innerText = '';
+	showCompletedTicketMessages(playersWithCompletedTickets, playerStates, gameMessage);
 }
 
 // creating ran num
@@ -311,5 +334,14 @@ nextBarrelBtn.onclick = () => {
 }
 
 newGameBtn.onclick = startGame;
+
+window.addEventListener('languagechange', () => {
+	if (gameOver) {
+		showResult(getWinningPlayers(playerStates));
+		return;
+	}
+
+	updateGameMessageLanguage();
+});
 
 startGame();

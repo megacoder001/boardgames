@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='en-US'>
+<html lang='en' data-i18n-title='main.title'>
 
 <head>
 
@@ -11,15 +11,16 @@
 </head>
 
 <body>
+<script type='module' src='../../common/i18n.js'></script>
 <div class="content-wrapper">
-	<h1>Welcome to Main Menu!</h1>
-	<h1><a href='../choosing_game/choosing_game_main.html'>Choose the game</a></h1>
+	<h1 data-i18n='main.welcome'>Welcome to Main Menu!</h1>
+	<h1><a href='../choosing_game/choosing_game_main.html' data-i18n='main.chooseGame'>Choose the game</a></h1>
 
 	<footer>
-		<h2>Board Games Inc.</h2>
+		<h2 data-i18n='global.company'>Board Games Inc.</h2>
 		<a href='https://github.com/megacoder001/boardgames' target='_blank'>
 		<img id='githubFavicon' type='image/svg+xml' src='https://github.githubassets.com/favicons/favicon.svg' data-base-href='https://github.githubassets.com/favicons/favicon'>
-		<h3 id='projectInfo'>Project information</h3></a>
+		<h3 id='projectInfo' data-i18n='main.projectInfo'>Project information</h3></a>
 </div>
 	</footer>
 </body>

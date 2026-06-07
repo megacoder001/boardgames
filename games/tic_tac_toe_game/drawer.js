@@ -1,4 +1,5 @@
 import {TicTacToeState, CellState, WinnerState} from './state.js';
+import {t} from '../../common/i18n.js';
 
 export class Drawer {
 	constructor(boardState, canvasContext2d, background, cross, circle, resultWindow, resultWindowClose, resultWindowText, scoreResultCount) {
@@ -12,10 +13,28 @@ export class Drawer {
 		this.resultWindowClose = resultWindowClose;
 		this.resultWindowText = resultWindowText;
 		this.scoreResultCount = scoreResultCount;
+
+		window.addEventListener('languagechange', () => {
+			if (this.boardState.winner != WinnerState.NONE) {
+				this.resultWindowText.textContent = this.getResultText();
+				this.scoreResultCount.textContent = t('ticTacToe.score');
+			}
+		});
+	}
+
+	getResultText() {
+		if (this.boardState.winner == WinnerState.CROSS) {
+			return t('ticTacToe.crossWon');
+		}
+
+		if (this.boardState.winner == WinnerState.CIRCLE) {
+			return t('ticTacToe.circleWon');
+		}
+
+		return t('ticTacToe.tie');
 	}
 
 	draw() {
-		var resultText // I've added it for recently
 		this.canvasContext2d.drawImage(this.background, 0, 0, 300, 150);
 
 		let indCountX = 0 // important for x coordinates
@@ -63,21 +82,8 @@ export class Drawer {
 
 		if (this.boardState.winner != WinnerState.NONE) {
 			this.resultWindow.style.display = 'block';
-
-			if (this.boardState.winner == WinnerState.CROSS) {
-				resultText = 'CROSS WON!!!';
-			}
-
-			else if (this.boardState.winner == WinnerState.CIRCLE) {
-				resultText = 'CIRCLE WON!!!';
-			}
-
-			else {
-				resultText = 'TIE! =(';
-				
-			}
-			this.resultWindowText.textContent = resultText;
-			this.scoreResultCount.textContent = scoreResultText;
+			this.resultWindowText.textContent = this.getResultText();
+			this.scoreResultCount.textContent = t('ticTacToe.score');
 		}
 	}
 };

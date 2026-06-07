@@ -1,62 +1,64 @@
+import {t} from '../../common/i18n.js';
+
 const NOTES = [
 	{
 		code: 'C',
-		name: 'До',
+		nameKey: 'note.C',
 		file: 'C3.flac',
 	},
 	{
 		code: 'C#',
-		name: 'До#',
+		nameKey: 'note.C#',
 		file: 'C%233.flac',
 	},
 	{
 		code: 'D',
-		name: 'Ре',
+		nameKey: 'note.D',
 		file: 'D3.flac',
 	},
 	{
 		code: 'D#',
-		name: 'Ре#',
+		nameKey: 'note.D#',
 		file: 'D%233.flac',
 	},
 	{
 		code: 'E',
-		name: 'Ми',
+		nameKey: 'note.E',
 		file: 'E3.flac',
 	},
 	{
 		code: 'F',
-		name: 'Фа',
+		nameKey: 'note.F',
 		file: 'F3.flac',
 	},
 	{
 		code: 'F#',
-		name: 'Фа#',
+		nameKey: 'note.F#',
 		file: 'F%233.flac',
 	},
 	{
 		code: 'G',
-		name: 'Соль',
+		nameKey: 'note.G',
 		file: 'G3.flac',
 	},
 	{
 		code: 'G#',
-		name: 'Соль#',
+		nameKey: 'note.G#',
 		file: 'G%233.flac',
 	},
 	{
 		code: 'A',
-		name: 'Ля',
+		nameKey: 'note.A',
 		file: 'A3.flac',
 	},
 	{
 		code: 'A#',
-		name: 'Ля#',
+		nameKey: 'note.A#',
 		file: 'A%233.flac',
 	},
 	{
 		code: 'B',
-		name: 'Си',
+		nameKey: 'note.B',
 		file: 'B3.flac',
 	},
 ];
@@ -71,6 +73,10 @@ const pianoKeys = document.querySelectorAll('.piano-key');
 
 const noteByCode = {};
 let currentNote = null;
+let currentStatusKey = 'melody.initialStatus';
+let currentStatusReplacements = {};
+let lastCorrectNote = null;
+let newNoteButtonKey = 'melody.playNote';
 let correctAnswers = 0;
 let wrongAnswers = 0;
 
@@ -90,7 +96,20 @@ function clearKeyStates() {
 }
 
 function updateScore() {
-	score.innerText = 'Верно: ' + correctAnswers + ' | Ошибки: ' + wrongAnswers;
+	score.innerText = t('melody.score', {
+		correct: correctAnswers,
+		wrong: wrongAnswers,
+	});
+}
+
+function setStatus(key, replacements = {}) {
+	currentStatusKey = key;
+	currentStatusReplacements = replacements;
+	gameStatus.innerText = t(key, replacements);
+}
+
+function getNoteName(note) {
+	return t(note.nameKey);
 }
 
 function playNote(note) {
@@ -100,7 +119,7 @@ function playNote(note) {
 	const playResult = note.audio.play();
 	if (playResult !== undefined) {
 		playResult.catch(() => {
-			gameStatus.innerText = 'Браузер не дал проиграть звук. Нажми кнопку ещё раз.';
+			setStatus('melody.browserBlocked');
 		});
 	}
 }
@@ -109,8 +128,9 @@ function startRound() {
 	clearKeyStates();
 	currentNote = getRandomNote();
 	repeatNoteBtn.disabled = false;
-	newNoteBtn.innerText = 'Новая нота';
-	gameStatus.innerText = 'Какая нота звучит?';
+	newNoteButtonKey = 'melody.newNote';
+	newNoteBtn.innerText = t(newNoteButtonKey);
+	setStatus('melody.question');
 	playNote(currentNote);
 }
 
@@ -124,7 +144,7 @@ function repeatCurrentNote() {
 
 function selectKey(key) {
 	if (currentNote === null) {
-		gameStatus.innerText = 'Сначала нажми "Сыграть ноту".';
+		setStatus('melody.startFirst');
 		return;
 	}
 
@@ -136,14 +156,17 @@ function selectKey(key) {
 	if (selectedNote.code !== currentNote.code) {
 		wrongAnswers++;
 		key.classList.add('wrong');
-		gameStatus.innerText = 'Не та нота. Попробуй ещё раз.';
+		setStatus('melody.wrong');
 		updateScore();
 		return;
 	}
 
 	correctAnswers++;
 	key.classList.add('correct');
-	gameStatus.innerText = 'Верно: ' + currentNote.name + '! Нажми "Новая нота".';
+	lastCorrectNote = currentNote;
+	setStatus('melody.correct', {
+		note: getNoteName(currentNote),
+	});
 	updateScore();
 	currentNote = null;
 	repeatNoteBtn.disabled = true;
@@ -157,3 +180,16 @@ for (const key of pianoKeys) {
 }
 
 updateScore();
+setStatus(currentStatusKey, currentStatusReplacements);
+
+window.addEventListener('languagechange', () => {
+	newNoteBtn.innerText = t(newNoteButtonKey);
+	if (currentStatusKey === 'melody.correct' && lastCorrectNote !== null) {
+		currentStatusReplacements = {
+			note: getNoteName(lastCorrectNote),
+		};
+	}
+
+	gameStatus.innerText = t(currentStatusKey, currentStatusReplacements);
+	updateScore();
+});
