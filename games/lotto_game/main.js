@@ -4,6 +4,8 @@ import {getBarNum} from './ran_num.js';
 const TICKET_ROWS = 3;
 const TICKET_COLUMNS = 9;
 const NUMS_IN_ROW = 5;
+const TICKET_IMAGE_URL = '../../images/games_images/lotto_images/lotto_processing_images/ticket.bmp';
+const CROSS_IMAGE_URL = '../../images/games_images/tic_tac_toe_images/tic_tac_toe_processing_images/red_cross01.png';
 const COLUMN_NUMS = [
 	[1, 9],
 	[10, 19],
@@ -68,12 +70,23 @@ function createTicketNums() {
 	return ticketNums;
 }
 
-function drawTicketNums(ticketCanvas, ticketNums) {
-	const context = ticketCanvas.getContext('2d');
+function getTicketGrid(ticketCanvas) {
 	const gridLeft = ticketCanvas.width * 0.028;
 	const gridTop = ticketCanvas.height * 0.069;
 	const cellWidth = ticketCanvas.width * 0.944 / TICKET_COLUMNS;
 	const cellHeight = ticketCanvas.height * 0.862 / TICKET_ROWS;
+
+	return {
+		gridLeft,
+		gridTop,
+		cellWidth,
+		cellHeight,
+	};
+}
+
+function drawTicketNums(ticketCanvas, ticketNums) {
+	const context = ticketCanvas.getContext('2d');
+	const {gridLeft, gridTop, cellWidth, cellHeight} = getTicketGrid(ticketCanvas);
 
 	context.fillStyle = 'black';
 	context.textAlign = 'center';
@@ -97,26 +110,47 @@ function drawTicketNums(ticketCanvas, ticketNums) {
 	}
 }
 
+function drawCross(ticketCanvas, cross, row, column) {
+	const context = ticketCanvas.getContext('2d');
+	const {gridLeft, gridTop, cellWidth, cellHeight} = getTicketGrid(ticketCanvas);
+	const crossWidth = cellWidth * 0.72;
+	const crossHeight = cellHeight * 0.72;
+	const crossLeft = gridLeft + cellWidth * column + (cellWidth - crossWidth) / 2;
+	const crossTop = gridTop + cellHeight * row + (cellHeight - crossHeight) / 2;
+
+	context.drawImage(cross, crossLeft, crossTop, crossWidth, crossHeight);
+}
+
+function markBarNum(ticketStates, cross, barNum) {
+	for (const ticketState of ticketStates) {
+		for (let row = 0; row < TICKET_ROWS; row++) {
+			for (let column = 0; column < TICKET_COLUMNS; column++) {
+				if (ticketState.nums[row][column] === barNum) {
+					drawCross(ticketState.canvas, cross, row, column);
+				}
+			}
+		}
+	}
+}
+
 // creating ran num
 const overlayText = document.getElementById('barrel-result-text');
 const nextBarrelBtn = document.getElementById('next_barrel');
 
-nextBarrelBtn.onclick = () => {
-	const barNum = getBarNum();
-	overlayText.innerText = barNum;
-}
-
 // let overlay-text = barNum
 
 const imageUrls = [
-	'../../images/games_images/lotto_images/lotto_processing_images/ticket.bmp' // ticket
+	TICKET_IMAGE_URL,
+	CROSS_IMAGE_URL,
 ]
 
-const [ticket] = await Promise.all (
+const [ticket, cross] = await Promise.all (
 	imageUrls.map(loadImage)
 );
 
 // printing ticket
+
+const ticketStates = [];
 
 for (let player = 0; player < 2; player++) {
 	const currentPlayerTickets = document.getElementById('player-tickets-' + player);
@@ -130,6 +164,23 @@ for (let player = 0; player < 2; player++) {
 		ticketCanvas.height = ticket.height;
 
 		ticketCanvas.getContext('2d').drawImage(ticket, 0, 0, ticketCanvas.width, ticketCanvas.height);
-		drawTicketNums(ticketCanvas, createTicketNums());
+		const ticketNums = createTicketNums();
+		drawTicketNums(ticketCanvas, ticketNums);
+		ticketStates.push({
+			canvas: ticketCanvas,
+			nums: ticketNums,
+		});
 	}
+}
+
+nextBarrelBtn.onclick = () => {
+	const barNum = getBarNum();
+
+	if (barNum === undefined) {
+		return;
+	}
+
+	const selectedBarNum = Number(barNum);
+	overlayText.innerText = selectedBarNum;
+	markBarNum(ticketStates, cross, selectedBarNum);
 }
