@@ -1,0 +1,154 @@
+body {
+	background: #121212;
+	color: white;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 24px;
+}
+
+a {
+	color: #91c9ff;
+}
+
+#topic {
+	text-align: center;
+}
+
+#game-panel {
+	text-align: center;
+	margin: 32px auto 24px;
+	max-width: 760px;
+}
+
+#controls {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+}
+
+#controls button {
+	border: 0;
+	border-radius: 6px;
+	padding: 12px 20px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+#controls button:disabled {
+	cursor: default;
+	opacity: 0.55;
+}
+
+#new-note {
+	background: #ffd166;
+	color: #171717;
+}
+
+#repeat-note {
+	background: #73d2de;
+	color: #171717;
+}
+
+#game-status {
+	min-height: 28px;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#score {
+	font-size: 18px;
+}
+
+#piano {
+	position: relative;
+	width: min(860px, 92vw);
+	height: 300px;
+	margin: 0 auto;
+	user-select: none;
+}
+
+#white-keys {
+	display: flex;
+	height: 100%;
+}
+
+.piano-key {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.white-key {
+	flex: 1;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	padding-bottom: 20px;
+	border: 2px solid #222;
+	border-radius: 0 0 8px 8px;
+	background: linear-gradient(#ffffff, #dfe6e9);
+	color: #111;
+	font-size: 24px;
+}
+
+.white-key + .white-key {
+	border-left: 0;
+}
+
+#black-keys {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.black-key {
+	position: absolute;
+	top: 0;
+	width: 8.5%;
+	height: 62%;
+	z-index: 1;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	padding-bottom: 14px;
+	border: 0;
+	border-radius: 0 0 6px 6px;
+	background: linear-gradient(#2e2e2e, #050505);
+	color: white;
+	font-size: 18px;
+	pointer-events: auto;
+}
+
+.black-key-c-sharp {
+	left: 9.9%;
+}
+
+.black-key-d-sharp {
+	left: 24.2%;
+}
+
+.black-key-f-sharp {
+	left: 52.8%;
+}
+
+.black-key-g-sharp {
+	left: 67.1%;
+}
+
+.black-key-a-sharp {
+	left: 81.4%;
+}
+
+.piano-key.selected {
+	outline: 5px solid #73d2de;
+	outline-offset: -5px;
+}
+
+.piano-key.correct {
+	background: #5dd39e;
+	color: #07130d;
+}
+
+.piano-key.wrong {
+	background: #ef476f;
+	color: white;
+}

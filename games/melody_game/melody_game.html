@@ -2,18 +2,48 @@
 <html lang='en-US'>
 
 <head>
-
-<title>Note Game</title>
-<meta>
-<link rel='stylesheet' href='note_game_style.css'>
-<link rel='icon' href='../../images/games_images/note_game_images/note_game_favicons/note_game_favicon01.png'>
-
+	<title>Melody Game</title>
+	<meta charset='utf-8'>
+	<link rel='stylesheet' href='melody_game_style.css'>
+	<link rel='icon' href='../../images/games_images/melody_images/favicon01.png'>
 </head>
 
 <body>
-<h1><a href='../../menu/main_menu/board_games_main.html'>Exit to Main Menu</a></h1>
-<h1></h1>
+	<script type='module' src='main.js'></script>
+
+	<h1><a href='../../menu/main_menu/board_games_main.html'>Exit to Main Menu</a></h1>
+	<h1 id='topic'>Melody Game</h1>
+
+	<div id='game-panel'>
+		<div id='controls'>
+			<button id='new-note'>Сыграть ноту</button>
+			<button id='repeat-note' disabled>Повторить</button>
+		</div>
+		<p id='game-status'>Нажми "Сыграть ноту", послушай звук и выбери клавишу.</p>
+		<p id='score'>Верно: 0 | Ошибки: 0</p>
+	</div>
+
+	<div id='piano' aria-label='Piano keyboard'>
+		<div id='white-keys'>
+			<button class='white-key piano-key' data-note='C' type='button'>До</button>
+			<button class='white-key piano-key' data-note='D' type='button'>Ре</button>
+			<button class='white-key piano-key' data-note='E' type='button'>Ми</button>
+			<button class='white-key piano-key' data-note='F' type='button'>Фа</button>
+			<button class='white-key piano-key' data-note='G' type='button'>Соль</button>
+			<button class='white-key piano-key' data-note='A' type='button'>Ля</button>
+			<button class='white-key piano-key' data-note='B' type='button'>Си</button>
+		</div>
+		<div id='black-keys'>
+			<button class='black-key piano-key black-key-c-sharp' data-note='C#' type='button'>До#</button>
+			<button class='black-key piano-key black-key-d-sharp' data-note='D#' type='button'>Ре#</button>
+			<button class='black-key piano-key black-key-f-sharp' data-note='F#' type='button'>Фа#</button>
+			<button class='black-key piano-key black-key-g-sharp' data-note='G#' type='button'>Соль#</button>
+			<button class='black-key piano-key black-key-a-sharp' data-note='A#' type='button'>Ля#</button>
+		</div>
+	</div>
+
+	<footer>
+	</footer>
 </body>
 
-<footer>
-</footer>   
+</html>
